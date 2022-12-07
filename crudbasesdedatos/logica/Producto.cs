@@ -33,5 +33,10 @@ namespace crudbasesdedatos.logica
             this.estado = estado;  
         }
 
+        public override String ToString()
+        {
+            return nombre;
+        }
+
     }
 }

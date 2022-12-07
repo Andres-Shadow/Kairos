@@ -39,6 +39,7 @@ namespace crudbasesdedatos.servicios
         //TIPO PRESENTACIONES
 
         public List<TipoPresentacion> listarTipoPresentaciones();
+        public TipoPresentacion obtenerTipoPresentacionPorId(int id);
 
     }
 }

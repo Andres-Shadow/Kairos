@@ -27,6 +27,15 @@ namespace crudbasesdedatos
             //LLENADO DE LA TABLA DE CLIENTES
             listarClientes();
 
+            //LLENADO DE LA TABLA PRODUCTOS EXISTENTES PARA PRESENTACION
+            listarProductosPresentacio();
+
+            //LLENADO DE LA TABLA DE TIPO DE PRESENTACION PARA PRESENTACION
+            listarTipoPresentacionPresentacion();
+
+
+            //LLENADO DE LA TABLA PRESENTACIONES
+            listarPresentaciones();
 
             string[] estados = {"CREADO", "ACTUALIZADO", "TRAMITADO"};
 
@@ -34,6 +43,8 @@ namespace crudbasesdedatos
             comboEstado.Items.AddRange(estados);
 
         }
+
+        
 
         private void gestion_admin_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -85,8 +96,55 @@ namespace crudbasesdedatos
                 
             }
         }
-        
-        
+
+        //PRODUCTOS EXISNTETES
+        private void listarProductosPresentacio()
+        {
+            List<Producto> productosExistentes = adminServicio.listarProductos();
+            dataGridProductosExistentes.Rows.Clear();
+
+            for (int i = 0; i < productosExistentes.Count; i++)
+            {
+                Producto aux = productosExistentes[i];
+                dataGridProductosExistentes.Rows.Add();
+                dataGridProductosExistentes.Rows[i].Cells[0].Value = aux.id;
+                dataGridProductosExistentes.Rows[i].Cells[1].Value = aux.nombre;
+            }
+        }
+
+        //TIPO PRESENTACION EXISTENTE
+        private void listarTipoPresentacionPresentacion()
+        {
+            List<TipoPresentacion> listaTiposPresentacionExistentes = adminServicio.listarTipoPresentaciones();
+            dataGridTipoPresentacion.Rows.Clear();
+            for (int i = 0; i < listaTiposPresentacionExistentes.Count; i++)
+            {
+                TipoPresentacion aux = listaTiposPresentacionExistentes[i];
+                dataGridTipoPresentacion.Rows.Add();
+                dataGridTipoPresentacion.Rows[i].Cells[0].Value = aux.id;
+                dataGridTipoPresentacion.Rows[i].Cells[1].Value = aux.tipo;
+            }
+
+        }
+
+        //PRESENTACIONES
+        private void listarPresentaciones()
+        {
+            List<Presentacion> presentaciones = adminServicio.listarPresentaciones();
+            dataGridView3.Rows.Clear();
+            for(int i = 0; i<presentaciones.Count; i++)
+            {
+                Presentacion aux = presentaciones[i];
+                dataGridView3.Rows.Add();
+                dataGridView3.Rows[i].Cells[0].Value = aux.id;
+                dataGridView3.Rows[i].Cells[1].Value = aux.producto.nombre;
+                dataGridView3.Rows[i].Cells[2].Value = aux.tipo_producto.tipo;
+                dataGridView3.Rows[i].Cells[3].Value = aux.precio;
+                dataGridView3.Rows[i].Cells[4].Value = aux.existencias;
+
+
+            }
+        }
 
         private Producto obtenerProductoSeleccionado()
         {
@@ -148,6 +206,7 @@ namespace crudbasesdedatos
 
             int id = adminServicio.contarProductos()+1;
             string estado = "Creado";
+
 
             Producto nuevo = new Producto(nombre, id, estado);
 
@@ -338,6 +397,38 @@ namespace crudbasesdedatos
             txtTelefonoCliente.Text = "";
             txtDireccionCliente.Text = "";
             txtNitCliente.Text = "";
+        }
+
+
+        //AGREGAR PRESENTACION
+        private void button10_Click(object sender, EventArgs e)
+        {
+            Producto seleccionado = adminServicio.obtenerProductoPorId(Convert.ToInt32(this.dataGridProductosExistentes.SelectedRows[0].Cells[0].Value));
+            TipoPresentacion tipo = adminServicio.obtenerTipoPresentacionPorId(Convert.ToInt32(this.dataGridTipoPresentacion.SelectedRows[0].Cells[0].Value));
+
+            if (seleccionado != null)
+            {
+                if(tipo != null)
+                {
+                    int existencias = Int32.Parse(txtExistenciasPresentacion.Text);
+                    float precio = float.Parse(txtPrecioPresentacion.Text);
+                    int id = adminServicio.contarPresentaciones() + 1;
+
+                    Presentacion nuevo = new Presentacion(seleccionado, tipo, existencias, precio, id);
+
+                    adminServicio.agregarPresentacion(nuevo);
+
+                    listarPresentaciones();
+                }
+                else
+                {
+                    MessageBox.Show("No se ha seleccionado un tipo de presentacion");
+                }
+            }
+            else
+            {
+                MessageBox.Show("No se ha seleccionado un producto existente");
+            }
         }
     }
 

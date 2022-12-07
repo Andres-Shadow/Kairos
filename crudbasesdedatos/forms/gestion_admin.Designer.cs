@@ -67,29 +67,35 @@
             this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.listProductosExistentes = new System.Windows.Forms.ListView();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.listTipoPresentacion = new System.Windows.Forms.ListView();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.txtPrecioPresentacion = new System.Windows.Forms.TextBox();
-            this.txtExistenciasPresentacion = new System.Windows.Forms.TextBox();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
+            this.dataGridTipoPresentacion = new System.Windows.Forms.DataGridView();
+            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridProductosExistentes = new System.Windows.Forms.DataGridView();
+            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button12 = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
+            this.txtExistenciasPresentacion = new System.Windows.Forms.TextBox();
+            this.txtPrecioPresentacion = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.tabpane.SuspendLayout();
             this.tab1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridTipoPresentacion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridProductosExistentes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.SuspendLayout();
             // 
@@ -103,7 +109,7 @@
             this.tabpane.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabpane.Name = "tabpane";
             this.tabpane.SelectedIndex = 0;
-            this.tabpane.Size = new System.Drawing.Size(930, 626);
+            this.tabpane.Size = new System.Drawing.Size(1048, 682);
             this.tabpane.TabIndex = 0;
             // 
             // tab1
@@ -124,7 +130,7 @@
             this.tab1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tab1.Name = "tab1";
             this.tab1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tab1.Size = new System.Drawing.Size(922, 593);
+            this.tab1.Size = new System.Drawing.Size(1040, 649);
             this.tab1.TabIndex = 0;
             this.tab1.Text = "Productos";
             this.tab1.UseVisualStyleBackColor = true;
@@ -298,7 +304,7 @@
             this.tabPage2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tabPage2.Size = new System.Drawing.Size(922, 593);
+            this.tabPage2.Size = new System.Drawing.Size(1040, 649);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Clientes";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -484,6 +490,8 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.dataGridTipoPresentacion);
+            this.tabPage1.Controls.Add(this.dataGridProductosExistentes);
             this.tabPage1.Controls.Add(this.dataGridView3);
             this.tabPage1.Controls.Add(this.button12);
             this.tabPage1.Controls.Add(this.button11);
@@ -492,110 +500,75 @@
             this.tabPage1.Controls.Add(this.txtPrecioPresentacion);
             this.tabPage1.Controls.Add(this.label12);
             this.tabPage1.Controls.Add(this.label11);
-            this.tabPage1.Controls.Add(this.listTipoPresentacion);
             this.tabPage1.Controls.Add(this.label10);
             this.tabPage1.Controls.Add(this.label4);
-            this.tabPage1.Controls.Add(this.listProductosExistentes);
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(922, 593);
+            this.tabPage1.Size = new System.Drawing.Size(1040, 649);
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "Presentaciones";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // listProductosExistentes
+            // dataGridTipoPresentacion
             // 
-            this.listProductosExistentes.Location = new System.Drawing.Point(33, 64);
-            this.listProductosExistentes.Name = "listProductosExistentes";
-            this.listProductosExistentes.Size = new System.Drawing.Size(168, 141);
-            this.listProductosExistentes.TabIndex = 0;
-            this.listProductosExistentes.UseCompatibleStateImageBehavior = false;
+            this.dataGridTipoPresentacion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridTipoPresentacion.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column14,
+            this.Column15});
+            this.dataGridTipoPresentacion.Location = new System.Drawing.Point(332, 60);
+            this.dataGridTipoPresentacion.Name = "dataGridTipoPresentacion";
+            this.dataGridTipoPresentacion.RowHeadersWidth = 51;
+            this.dataGridTipoPresentacion.RowTemplate.Height = 29;
+            this.dataGridTipoPresentacion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridTipoPresentacion.Size = new System.Drawing.Size(265, 168);
+            this.dataGridTipoPresentacion.TabIndex = 13;
             // 
-            // label4
+            // Column14
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(47, 21);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(144, 20);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Productos existentes";
+            this.Column14.HeaderText = "id";
+            this.Column14.MinimumWidth = 6;
+            this.Column14.Name = "Column14";
+            this.Column14.ReadOnly = true;
+            this.Column14.Width = 85;
             // 
-            // label10
+            // Column15
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(281, 21);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(128, 20);
-            this.label10.TabIndex = 2;
-            this.label10.Text = "Tipo presentacion";
+            this.Column15.HeaderText = "Tipo";
+            this.Column15.MinimumWidth = 6;
+            this.Column15.Name = "Column15";
+            this.Column15.ReadOnly = true;
+            this.Column15.Width = 125;
             // 
-            // listTipoPresentacion
+            // dataGridProductosExistentes
             // 
-            this.listTipoPresentacion.Location = new System.Drawing.Point(266, 64);
-            this.listTipoPresentacion.Name = "listTipoPresentacion";
-            this.listTipoPresentacion.Size = new System.Drawing.Size(158, 141);
-            this.listTipoPresentacion.TabIndex = 3;
-            this.listTipoPresentacion.UseCompatibleStateImageBehavior = false;
+            this.dataGridProductosExistentes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridProductosExistentes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column12,
+            this.Column13});
+            this.dataGridProductosExistentes.Location = new System.Drawing.Point(26, 60);
+            this.dataGridProductosExistentes.Name = "dataGridProductosExistentes";
+            this.dataGridProductosExistentes.RowHeadersWidth = 51;
+            this.dataGridProductosExistentes.RowTemplate.Height = 29;
+            this.dataGridProductosExistentes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridProductosExistentes.Size = new System.Drawing.Size(265, 168);
+            this.dataGridProductosExistentes.TabIndex = 12;
             // 
-            // label11
+            // Column12
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(471, 79);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(50, 20);
-            this.label11.TabIndex = 4;
-            this.label11.Text = "Precio";
+            this.Column12.HeaderText = "id";
+            this.Column12.MinimumWidth = 6;
+            this.Column12.Name = "Column12";
+            this.Column12.ReadOnly = true;
+            this.Column12.Width = 85;
             // 
-            // label12
+            // Column13
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(471, 130);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(80, 20);
-            this.label12.TabIndex = 5;
-            this.label12.Text = "Existencias";
-            // 
-            // txtPrecioPresentacion
-            // 
-            this.txtPrecioPresentacion.Location = new System.Drawing.Point(572, 76);
-            this.txtPrecioPresentacion.Name = "txtPrecioPresentacion";
-            this.txtPrecioPresentacion.Size = new System.Drawing.Size(198, 27);
-            this.txtPrecioPresentacion.TabIndex = 6;
-            // 
-            // txtExistenciasPresentacion
-            // 
-            this.txtExistenciasPresentacion.Location = new System.Drawing.Point(572, 127);
-            this.txtExistenciasPresentacion.Name = "txtExistenciasPresentacion";
-            this.txtExistenciasPresentacion.Size = new System.Drawing.Size(198, 27);
-            this.txtExistenciasPresentacion.TabIndex = 7;
-            // 
-            // button10
-            // 
-            this.button10.Location = new System.Drawing.Point(195, 237);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(94, 29);
-            this.button10.TabIndex = 8;
-            this.button10.Text = "Agregar";
-            this.button10.UseVisualStyleBackColor = true;
-            // 
-            // button11
-            // 
-            this.button11.Location = new System.Drawing.Point(330, 237);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(94, 29);
-            this.button11.TabIndex = 9;
-            this.button11.Text = "Actualizar";
-            this.button11.UseVisualStyleBackColor = true;
-            // 
-            // button12
-            // 
-            this.button12.Location = new System.Drawing.Point(457, 237);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(94, 29);
-            this.button12.TabIndex = 10;
-            this.button12.Text = "Eliminar";
-            this.button12.UseVisualStyleBackColor = true;
+            this.Column13.HeaderText = "Nombre";
+            this.Column13.MinimumWidth = 6;
+            this.Column13.Name = "Column13";
+            this.Column13.ReadOnly = true;
+            this.Column13.Width = 125;
             // 
             // dataGridView3
             // 
@@ -606,10 +579,11 @@
             this.Column8,
             this.Column9,
             this.Column10});
-            this.dataGridView3.Location = new System.Drawing.Point(33, 324);
+            this.dataGridView3.Location = new System.Drawing.Point(100, 388);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowHeadersWidth = 51;
             this.dataGridView3.RowTemplate.Height = 29;
+            this.dataGridView3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView3.Size = new System.Drawing.Size(769, 188);
             this.dataGridView3.TabIndex = 11;
             // 
@@ -653,11 +627,89 @@
             this.Column10.ReadOnly = true;
             this.Column10.Width = 125;
             // 
+            // button12
+            // 
+            this.button12.Location = new System.Drawing.Point(557, 300);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(94, 29);
+            this.button12.TabIndex = 10;
+            this.button12.Text = "Eliminar";
+            this.button12.UseVisualStyleBackColor = true;
+            // 
+            // button11
+            // 
+            this.button11.Location = new System.Drawing.Point(430, 300);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(94, 29);
+            this.button11.TabIndex = 9;
+            this.button11.Text = "Actualizar";
+            this.button11.UseVisualStyleBackColor = true;
+            // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(295, 300);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(94, 29);
+            this.button10.TabIndex = 8;
+            this.button10.Text = "Agregar";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
+            // txtExistenciasPresentacion
+            // 
+            this.txtExistenciasPresentacion.Location = new System.Drawing.Point(727, 135);
+            this.txtExistenciasPresentacion.Name = "txtExistenciasPresentacion";
+            this.txtExistenciasPresentacion.Size = new System.Drawing.Size(198, 27);
+            this.txtExistenciasPresentacion.TabIndex = 7;
+            // 
+            // txtPrecioPresentacion
+            // 
+            this.txtPrecioPresentacion.Location = new System.Drawing.Point(727, 84);
+            this.txtPrecioPresentacion.Name = "txtPrecioPresentacion";
+            this.txtPrecioPresentacion.Size = new System.Drawing.Size(198, 27);
+            this.txtPrecioPresentacion.TabIndex = 6;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(626, 138);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(80, 20);
+            this.label12.TabIndex = 5;
+            this.label12.Text = "Existencias";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(626, 87);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(50, 20);
+            this.label11.TabIndex = 4;
+            this.label11.Text = "Precio";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(396, 21);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(128, 20);
+            this.label10.TabIndex = 2;
+            this.label10.Text = "Tipo presentacion";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(80, 21);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(144, 20);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "Productos existentes";
+            // 
             // gestion_admin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(930, 626);
+            this.ClientSize = new System.Drawing.Size(1048, 682);
             this.Controls.Add(this.tabpane);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "gestion_admin";
@@ -673,6 +725,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridTipoPresentacion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridProductosExistentes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.ResumeLayout(false);
 
@@ -719,9 +773,7 @@
         private DataGridViewTextBoxColumn Column5;
         private Button button9;
         private TabPage tabPage1;
-        private ListView listProductosExistentes;
         private Label label4;
-        private ListView listTipoPresentacion;
         private Label label10;
         private TextBox txtPrecioPresentacion;
         private Label label12;
@@ -736,5 +788,11 @@
         private DataGridViewTextBoxColumn Column8;
         private DataGridViewTextBoxColumn Column9;
         private DataGridViewTextBoxColumn Column10;
+        private DataGridView dataGridProductosExistentes;
+        private DataGridViewTextBoxColumn Column12;
+        private DataGridViewTextBoxColumn Column13;
+        private DataGridView dataGridTipoPresentacion;
+        private DataGridViewTextBoxColumn Column14;
+        private DataGridViewTextBoxColumn Column15;
     }
 }

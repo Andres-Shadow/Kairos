@@ -203,5 +203,14 @@ namespace crudbasesdedatos.servicioImpl
             return encontrao;
         }
 
+        public TipoPresentacion obtenerTipoPresentacionPorId(int id)
+        {
+            TipoPresentacion encontrado = tipoPresentacionRepo.obtenerPresentacionPorId(id);
+            if (encontrado == null)
+            {
+                throw new Exception("Tipo presentacion no encontrado");
+            }
+            return encontrado;
+        }
     }
 }
