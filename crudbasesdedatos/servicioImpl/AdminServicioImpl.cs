@@ -18,31 +18,26 @@ namespace crudbasesdedatos.servicioImpl
 
         public bool actualizarCliente(string cedulaViejo, Cliente nuevo)
         {
-            bool eliminacion = clienteRepo.eliminarCliente(cedulaViejo);
             bool result = false;
 
-            if(eliminacion)
+
+            result = clienteRepo.actualizarCliente(cedulaViejo, nuevo);
+            
+            if(!result)
             {
-              result = clienteRepo.agrearCliente(nuevo);
+                throw new Exception("No se ha podido actualizar el cliente");
             }
-            else
-            {
-                throw new Exception("NO SE HA ENCONTRADO EL CLIENTE");
-            }
+            
             return result;
         }
 
         public bool actualizarPresetnacion(int idViejo, Presentacion nuevo)
         {
-            bool eliminacion = presentacionRepo.eliminarPresentacion(idViejo);
             bool result = false;
-            if (eliminacion)
+            result = presentacionRepo.actualizarPresentacion(idViejo, nuevo);
+            if(!result)
             {
-                result = presentacionRepo.agregarPresentacion(nuevo);
-            }
-            else
-            {
-                throw new Exception("No se ha encontrado esa presentacion");
+                throw new Exception("No se ha podido actualizar la presentacion");
             }
 
             return result;
@@ -50,15 +45,23 @@ namespace crudbasesdedatos.servicioImpl
 
         public bool actualizarProducto(int idViejo, Producto nuevo)
         {
-            bool eliminacion = productoRepo.eliminarProducto(idViejo);
+            
             bool result = false;
-            if (eliminacion)
+            result = productoRepo.actualizarProducto(idViejo, nuevo);
+            if (!result)
             {
-                string nombre = nuevo.nombre;
-                int id = nuevo.id;
-                string estado = nuevo.estado;
+                throw new Exception("No se ha podido actualizar el producto");
+            }
+            return result;
+        }
 
-                result =  productoRepo.agregarProducto(nombre, estado, id);
+        public bool actualizarTipoPresentacion(int idVIejo, TipoPresentacion nuevo)
+        {
+            bool result = false;
+            result = tipoPresentacionRepo.actualizarTipoProducto(idVIejo, nuevo);
+            if (!result)
+            {
+                throw new Exception("No se ha podido actualizar el tipo de presentacion");
             }
             return result;
         }
@@ -99,6 +102,16 @@ namespace crudbasesdedatos.servicioImpl
             return result;
         }
 
+        public bool agregarTipoPresentacion(TipoPresentacion nuevo)
+        {
+            bool result = tipoPresentacionRepo.agregarTipoPresentaciono(nuevo);
+            if (!result)
+            {
+                throw new Exception("No se ha podido agregar el tipo de presentacion");
+            }
+            return result;
+        }
+
         public int contarPresentaciones()
         {
             int total = 0;
@@ -110,6 +123,13 @@ namespace crudbasesdedatos.servicioImpl
         {
             int total = 0;
             total = productoRepo.contarProductosExistentes();
+            return total;
+        }
+
+        public int contarTipoPresentacion()
+        {
+            int total = 0;
+            total = tipoPresentacionRepo.contarCantidadPresentaciones();
             return total;
         }
 
@@ -143,6 +163,16 @@ namespace crudbasesdedatos.servicioImpl
                 throw new Exception("No se ha podido eliminar el producto");
             }
             return result; 
+        }
+
+        public bool eliminarTipoPresentacion(int idViejo)
+        {
+            bool result = tipoPresentacionRepo.eliminarTipoPresentacion(idViejo);
+            if (!result)
+            {
+                throw new Exception("No se ha podido eliminar este tipo de presentacion");
+            }
+            return result;
         }
 
         public List<Cliente> listarClientes()

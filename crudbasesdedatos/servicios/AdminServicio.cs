@@ -40,6 +40,10 @@ namespace crudbasesdedatos.servicios
 
         public List<TipoPresentacion> listarTipoPresentaciones();
         public TipoPresentacion obtenerTipoPresentacionPorId(int id);
+        public bool agregarTipoPresentacion(TipoPresentacion nuevo);
+        public bool eliminarTipoPresentacion(int idViejo);
+        public bool actualizarTipoPresentacion(int idVIejo, TipoPresentacion nuevo);
+        public int contarTipoPresentacion();
 
     }
 }

@@ -88,9 +88,88 @@ namespace crudbasesdedatos.dao
             {
 
             }
-
-
             return lista;
         }
+
+        public bool agregarTipoPresentaciono(TipoPresentacion nuevo)
+        {
+            string consulta = "insert into tipo_producto values (" + nuevo.id + ", \'" + nuevo.tipo + "\')";
+            MySqlCommand cmd = new MySqlCommand(consulta);
+            cmd.Connection = conectar();
+            MySqlDataReader reader;
+
+            try
+            {
+                reader = cmd.ExecuteReader();
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return true;
+        }
+
+        public bool eliminarTipoPresentacion(int id)
+        {
+            string consulta = "delete from tipo_producto where id=" + id;
+            MySqlCommand cmd = new MySqlCommand(consulta);
+            cmd.Connection = conectar();
+            MySqlDataReader reader;
+            try
+            {
+                reader = cmd.ExecuteReader();
+            }catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return true;
+        }
+
+
+        public bool actualizarTipoProducto(int idViedjo, TipoPresentacion nuevo)
+        {
+            string consulta = "update tipo_producto set tipo=\'" + nuevo.tipo + "\' where id=" + idViedjo;
+            MySqlCommand cmd = new MySqlCommand(consulta);
+            cmd.Connection = conectar();
+            MySqlDataReader reader;
+            try
+            {
+                reader = cmd.ExecuteReader();
+            }catch(Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            return true;
+
+        }
+
+
+        public int contarCantidadPresentaciones()
+        {
+            string consulta = "select count(id) from tipo_producto";
+            MySqlCommand cmd = new MySqlCommand(consulta);
+            cmd.Connection = conectar();    
+            MySqlDataReader reader;
+            int total = 0;
+            try
+            {
+                reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while(reader.Read())
+                    {
+                        total = reader.GetInt32(0);
+                    }
+                }
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return total;
+        }
     }
+
+    
 }

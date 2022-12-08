@@ -3,6 +3,7 @@ using crudbasesdedatos.forms;
 using crudbasesdedatos.logica;
 using crudbasesdedatos.servicioImpl;
 using MySql.Data.MySqlClient;
+using MySqlX.XDevAPI;
 using MySqlX.XDevAPI.Common;
 using System.Data;
 using System.Windows.Forms;
@@ -36,6 +37,11 @@ namespace crudbasesdedatos
 
             //LLENADO DE LA TABLA PRESENTACIONES
             listarPresentaciones();
+
+
+            //LLENADO TABLA TIPO PRESENTACION CRUD
+            //listarTipoPresentacionesCrud();
+
 
             string[] estados = {"CREADO", "ACTUALIZADO", "TRAMITADO"};
 
@@ -120,9 +126,14 @@ namespace crudbasesdedatos
             for (int i = 0; i < listaTiposPresentacionExistentes.Count; i++)
             {
                 TipoPresentacion aux = listaTiposPresentacionExistentes[i];
+                //PESTAÑA PRESENTACION
                 dataGridTipoPresentacion.Rows.Add();
                 dataGridTipoPresentacion.Rows[i].Cells[0].Value = aux.id;
                 dataGridTipoPresentacion.Rows[i].Cells[1].Value = aux.tipo;
+                //PESTAÑA CRUD TIPO PRESENTACION
+                dataGridView4.Rows.Add();
+                dataGridView4.Rows[i].Cells[0].Value = aux.id;
+                dataGridView4.Rows[i].Cells[1].Value = aux.tipo;
             }
 
         }
@@ -145,6 +156,7 @@ namespace crudbasesdedatos
 
             }
         }
+
 
         private Producto obtenerProductoSeleccionado()
         {
@@ -199,6 +211,26 @@ namespace crudbasesdedatos
             }
         }
 
+        private void dataGridView3_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                Presentacion aux = obtenerPresentacionSeleccionada();
+                if(aux != null )
+                {
+                    txtPrecioPresentacion.Text = ""+aux.precio;
+                    txtExistenciasPresentacion.Text = "" + aux.existencias;
+                    
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+
+
         //AGREGAR PRODUCTO
         private void button1_Click(object sender, EventArgs e)
         {
@@ -217,6 +249,8 @@ namespace crudbasesdedatos
                 MessageBox.Show("Producto agregado");
                 limpiar();
                 listar();
+                listarProductosPresentacio();
+                listarPresentaciones();
             }
             else
             {
@@ -234,6 +268,8 @@ namespace crudbasesdedatos
             }
             limpiar();
             listar();
+            listarProductosPresentacio();
+            listarPresentaciones();
         }
 
         //ACTUALIZAR PRDOCUTO
@@ -251,6 +287,8 @@ namespace crudbasesdedatos
                 adminServicio.actualizarProducto(actualizar.id, aux);
                 listar();
                 limpiar();
+                listarProductosPresentacio();
+                listarPresentaciones();
             }
         }
 
@@ -380,6 +418,20 @@ namespace crudbasesdedatos
             return aux;
         }
 
+        private Presentacion obtenerPresentacionSeleccionada()
+        {
+            Presentacion seleccionado = adminServicio.obtenerPresentacionPorId(Convert.ToInt32(this.dataGridView3.SelectedRows[0].Cells[0].Value));
+            return seleccionado;
+        }
+
+        private TipoPresentacion obtenerTipoPresentacionSeleccionada()
+        {
+            int id = Convert.ToInt32(this.dataGridView4.SelectedRows[0].Cells[0].Value);
+            TipoPresentacion seleccionado = adminServicio.obtenerTipoPresentacionPorId(id);
+            return seleccionado;
+                
+        }
+
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -417,7 +469,7 @@ namespace crudbasesdedatos
                     Presentacion nuevo = new Presentacion(seleccionado, tipo, existencias, precio, id);
 
                     adminServicio.agregarPresentacion(nuevo);
-
+                    limpiarPresentacion();
                     listarPresentaciones();
                 }
                 else
@@ -429,6 +481,118 @@ namespace crudbasesdedatos
             {
                 MessageBox.Show("No se ha seleccionado un producto existente");
             }
+        }
+
+        //ELIMINAR PRESENTACION
+        private void button12_Click(object sender, EventArgs e)
+        {
+            Presentacion seleccionado = obtenerPresentacionSeleccionada();
+
+            if(seleccionado != null)
+            {   
+                if (MessageBox.Show("Quieres eliminar a esta presentacion?", "Alerta", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    bool eliminado = adminServicio.eliminarPresetnacion(seleccionado.id);
+                    listarPresentaciones();
+                    limpiarPresentacion();
+                }
+            }
+            
+        }
+
+        public void limpiarPresentacion()
+        {
+            txtPrecioPresentacion.Text = "";
+            txtExistenciasPresentacion.Text = "";
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            Producto seleccionado = adminServicio.obtenerProductoPorId(Convert.ToInt32(this.dataGridProductosExistentes.SelectedRows[0].Cells[0].Value));
+            TipoPresentacion tipo = adminServicio.obtenerTipoPresentacionPorId(Convert.ToInt32(this.dataGridTipoPresentacion.SelectedRows[0].Cells[0].Value));
+
+            if (seleccionado != null)
+            {
+                if (tipo != null)
+                {
+                    int existencias = Int32.Parse(txtExistenciasPresentacion.Text);
+                    float precio = float.Parse(txtPrecioPresentacion.Text);
+                    int id = adminServicio.contarPresentaciones() + 1;
+
+                    Presentacion presentacionSeleccionada = obtenerPresentacionSeleccionada();
+
+                    Presentacion nuevo = new Presentacion(seleccionado, tipo, existencias, precio, id);
+
+                    nuevo.id = presentacionSeleccionada.id;
+
+                    adminServicio.actualizarPresetnacion(presentacionSeleccionada.id, nuevo);
+                    limpiarPresentacion();
+                    listarPresentaciones();
+                }
+                else
+                {
+                    MessageBox.Show("No se ha seleccionado un tipo de presentacion");
+                }
+            }
+            else
+            {
+                MessageBox.Show("No se ha seleccionado un producto existente");
+            }
+        }
+
+
+        //AGREGAR TIPO PRESENTACION
+        private void button13_Click(object sender, EventArgs e)
+        {
+            string tipo = txtTipoPresentacion.Text;
+            int id = adminServicio.contarTipoPresentacion()+1;
+
+            bool agregado = adminServicio.agregarTipoPresentacion(new TipoPresentacion(id, tipo));
+            if (agregado)
+            {
+                txtTipoPresentacion.Text = "";  
+                listarTipoPresentacionPresentacion();
+                MessageBox.Show("se ha agregado el tipo de presentacion");
+            }
+        }
+
+        //ELIMINAR TIPO PRESENTACION
+        private void button15_Click(object sender, EventArgs e)
+        {
+            TipoPresentacion seleccionado = obtenerTipoPresentacionSeleccionada();
+            if (MessageBox.Show("Quieres eliminar a esta presentacion?", "Alerta", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                bool eliminado = adminServicio.eliminarTipoPresentacion(seleccionado.id);
+                listarTipoPresentacionPresentacion();
+            }
+        }
+
+        //ACTUALIZAR TIPO PRESENTACION
+        private void button14_Click(object sender, EventArgs e)
+        {
+            TipoPresentacion seleccionado = obtenerTipoPresentacionSeleccionada();
+
+
+            if (seleccionado != null)
+            {
+                string tipo = txtTipoPresentacion.Text;
+                int id = seleccionado.id;
+                TipoPresentacion nuevo = new TipoPresentacion(id, tipo);
+
+                bool result = adminServicio.actualizarTipoPresentacion(seleccionado.id, nuevo);
+                if (result)
+                {
+                    listarTipoPresentacionPresentacion();
+                    MessageBox.Show("se actualizó el tipo de presentacion");
+                }
+
+            }
+        }
+
+        private void dataGridView4_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            TipoPresentacion seleccionoado = obtenerTipoPresentacionSeleccionada();
+            txtTipoPresentacion.Text = seleccionoado.tipo;
         }
     }
 

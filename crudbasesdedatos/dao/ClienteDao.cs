@@ -11,7 +11,7 @@ namespace crudbasesdedatos.dao
 {
     internal class ClienteDao
     {
-        private string servidor = "localhost";
+        private string servidor = "localhost";  
         private string usr = "root";
         private string pswd = "andres_1";
         private string bbdd = "test";
@@ -142,6 +142,25 @@ namespace crudbasesdedatos.dao
                 MessageBox.Show(ex.Message);
             }
             
+            return true;
+        }
+
+
+        public bool actualizarCliente(string cedula, Cliente actualizar)
+        {
+            string consulta = "update cliente set nombre= \'"+actualizar.nombre+"\', telefono= \'"+actualizar.telefono+"\', direccion = \'"+actualizar.direccion+"\', nit=\'"+actualizar.nit+"\' where cedula =\'"+cedula+"\'";
+            MessageBox.Show(consulta);
+            MySqlCommand cmd = new MySqlCommand(consulta);
+            cmd.Connection = conectar();
+            MySqlDataReader reader;
+            try
+            {
+                reader = cmd.ExecuteReader();
+            }catch(Exception e) 
+            {
+                MessageBox.Show(e.Message);
+            }
+
             return true;
         }
 

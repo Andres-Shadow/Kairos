@@ -169,5 +169,23 @@ namespace crudbasesdedatos.dao
             return resultado;
         }
 
+        public bool actualizarPresentacion(int idViejo, Presentacion nuevo)
+        {
+
+            string consulta = "update presentacion set existencias=" + nuevo.existencias + ", precio=" + nuevo.precio + ", id_producto = " + nuevo.producto.id + ", id_tipo_producto=" + nuevo.tipo_producto.id +" where id="+idViejo;
+            MySqlCommand cmd = new MySqlCommand(consulta);
+            cmd.Connection = conectar();
+            MySqlDataReader reader;
+
+            try
+            {
+                reader = cmd.ExecuteReader();
+            }catch(Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            return true;
+        }
+
     }
 }

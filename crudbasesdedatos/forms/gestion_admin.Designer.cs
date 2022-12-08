@@ -66,6 +66,15 @@
             this.button8 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.dataGridView4 = new System.Windows.Forms.DataGridView();
+            this.Column16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button15 = new System.Windows.Forms.Button();
+            this.button14 = new System.Windows.Forms.Button();
+            this.button13 = new System.Windows.Forms.Button();
+            this.txtTipoPresentacion = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dataGridTipoPresentacion = new System.Windows.Forms.DataGridView();
             this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -93,6 +102,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridTipoPresentacion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProductosExistentes)).BeginInit();
@@ -103,6 +114,7 @@
             // 
             this.tabpane.Controls.Add(this.tab1);
             this.tabpane.Controls.Add(this.tabPage2);
+            this.tabpane.Controls.Add(this.tabPage3);
             this.tabpane.Controls.Add(this.tabPage1);
             this.tabpane.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabpane.Location = new System.Drawing.Point(0, 0);
@@ -488,6 +500,99 @@
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.dataGridView4);
+            this.tabPage3.Controls.Add(this.button15);
+            this.tabPage3.Controls.Add(this.button14);
+            this.tabPage3.Controls.Add(this.button13);
+            this.tabPage3.Controls.Add(this.txtTipoPresentacion);
+            this.tabPage3.Controls.Add(this.label13);
+            this.tabPage3.Location = new System.Drawing.Point(4, 29);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(1040, 649);
+            this.tabPage3.TabIndex = 3;
+            this.tabPage3.Text = "Tipo presentacion";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView4
+            // 
+            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView4.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column16,
+            this.Column17});
+            this.dataGridView4.Location = new System.Drawing.Point(70, 246);
+            this.dataGridView4.Name = "dataGridView4";
+            this.dataGridView4.RowHeadersWidth = 51;
+            this.dataGridView4.RowTemplate.Height = 29;
+            this.dataGridView4.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView4.Size = new System.Drawing.Size(300, 188);
+            this.dataGridView4.TabIndex = 5;
+            this.dataGridView4.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView4_CellDoubleClick);
+            // 
+            // Column16
+            // 
+            this.Column16.HeaderText = "Id";
+            this.Column16.MinimumWidth = 6;
+            this.Column16.Name = "Column16";
+            this.Column16.ReadOnly = true;
+            this.Column16.Width = 125;
+            // 
+            // Column17
+            // 
+            this.Column17.HeaderText = "Tipo";
+            this.Column17.MinimumWidth = 6;
+            this.Column17.Name = "Column17";
+            this.Column17.ReadOnly = true;
+            this.Column17.Width = 125;
+            // 
+            // button15
+            // 
+            this.button15.Location = new System.Drawing.Point(618, 149);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(94, 29);
+            this.button15.TabIndex = 4;
+            this.button15.Text = "Eliminar";
+            this.button15.UseVisualStyleBackColor = true;
+            this.button15.Click += new System.EventHandler(this.button15_Click);
+            // 
+            // button14
+            // 
+            this.button14.Location = new System.Drawing.Point(618, 90);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(94, 29);
+            this.button14.TabIndex = 3;
+            this.button14.Text = "Actualizar";
+            this.button14.UseVisualStyleBackColor = true;
+            this.button14.Click += new System.EventHandler(this.button14_Click);
+            // 
+            // button13
+            // 
+            this.button13.Location = new System.Drawing.Point(618, 34);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(94, 29);
+            this.button13.TabIndex = 2;
+            this.button13.Text = "Agregar";
+            this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.button13_Click);
+            // 
+            // txtTipoPresentacion
+            // 
+            this.txtTipoPresentacion.Location = new System.Drawing.Point(252, 74);
+            this.txtTipoPresentacion.Name = "txtTipoPresentacion";
+            this.txtTipoPresentacion.Size = new System.Drawing.Size(206, 27);
+            this.txtTipoPresentacion.TabIndex = 1;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(70, 81);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(128, 20);
+            this.label13.TabIndex = 0;
+            this.label13.Text = "Tipo presentacion";
+            // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.dataGridTipoPresentacion);
@@ -586,6 +691,7 @@
             this.dataGridView3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView3.Size = new System.Drawing.Size(769, 188);
             this.dataGridView3.TabIndex = 11;
+            this.dataGridView3.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellDoubleClick);
             // 
             // Column11
             // 
@@ -635,6 +741,7 @@
             this.button12.TabIndex = 10;
             this.button12.Text = "Eliminar";
             this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
             // button11
             // 
@@ -644,6 +751,7 @@
             this.button11.TabIndex = 9;
             this.button11.Text = "Actualizar";
             this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
             // button10
             // 
@@ -723,6 +831,9 @@
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridTipoPresentacion)).EndInit();
@@ -794,5 +905,14 @@
         private DataGridView dataGridTipoPresentacion;
         private DataGridViewTextBoxColumn Column14;
         private DataGridViewTextBoxColumn Column15;
+        private TabPage tabPage3;
+        private TextBox txtTipoPresentacion;
+        private Label label13;
+        private Button button15;
+        private Button button14;
+        private Button button13;
+        private DataGridView dataGridView4;
+        private DataGridViewTextBoxColumn Column16;
+        private DataGridViewTextBoxColumn Column17;
     }
 }
