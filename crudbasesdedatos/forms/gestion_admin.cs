@@ -2,6 +2,7 @@ using crudbasesdedatos.dao;
 using crudbasesdedatos.forms;
 using crudbasesdedatos.logica;
 using crudbasesdedatos.servicioImpl;
+using kairos.logica;
 using MySql.Data.MySqlClient;
 using MySqlX.XDevAPI;
 using MySqlX.XDevAPI.Common;
@@ -93,13 +94,20 @@ namespace crudbasesdedatos
             for(int i = 0; i<lista.Count; i++)
             {
                 Cliente c = lista[i];
+
+                //CRUD CLIENTES
                 dataGridView2.Rows.Add();
                 dataGridView2.Rows[i].Cells[0].Value = c.nombre;
                 dataGridView2.Rows[i].Cells[1].Value = c.cedula;
                 dataGridView2.Rows[i].Cells[2].Value = c.telefono;
                 dataGridView2.Rows[i].Cells[3].Value = c.direccion;
                 dataGridView2.Rows[i].Cells[4].Value = c.nit;
-                
+
+
+                //CLIENTES PEDIDOS
+                dataGridClientesPedidos.Rows.Add();
+                dataGridClientesPedidos.Rows[i].Cells[0].Value = c.cedula;
+                dataGridClientesPedidos.Rows[i].Cells[1].Value = c.nombre;
             }
         }
 
@@ -593,6 +601,23 @@ namespace crudbasesdedatos
         {
             TipoPresentacion seleccionoado = obtenerTipoPresentacionSeleccionada();
             txtTipoPresentacion.Text = seleccionoado.tipo;
+        }
+
+        //OBTENER CLIENTE SELECCIONADO EN PESTAÑA PEDIDO
+        private void dataGridClientesPedidos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string cedula = (string)this.dataGridClientesPedidos.SelectedRows[0].Cells[0].Value;
+            Cliente seleccionado = adminServicio.obtenerClientePorCedula(cedula);
+
+            List <Pedido> lista = adminServicio.obtenerPedidosSegunCliente(seleccionado);
+
+            for(int i = 0; i<lista.Count; i++)
+            {
+                Pedido aux = lista[i];
+                dataGridPedidosCliente.Rows.Add();
+                dataGridPedidosCliente.Rows[i].Cells[0].Value = aux.id;
+                dataGridPedidosCliente.Rows[i].Cells[1].Value = aux.estado;
+            }
         }
     }
 

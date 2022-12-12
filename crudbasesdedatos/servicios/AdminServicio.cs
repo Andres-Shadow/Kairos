@@ -1,4 +1,5 @@
 ﻿using crudbasesdedatos.logica;
+using kairos.logica;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,6 +45,9 @@ namespace crudbasesdedatos.servicios
         public bool eliminarTipoPresentacion(int idViejo);
         public bool actualizarTipoPresentacion(int idVIejo, TipoPresentacion nuevo);
         public int contarTipoPresentacion();
+
+        //PEDIDOS
+        public List<Pedido> obtenerPedidosSegunCliente(Cliente cliente);
 
     }
 }

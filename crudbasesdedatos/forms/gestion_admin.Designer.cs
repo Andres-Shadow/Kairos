@@ -97,6 +97,15 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.dataGridPedidosCliente = new System.Windows.Forms.DataGridView();
+            this.Column20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label14 = new System.Windows.Forms.Label();
+            this.dataGridClientesPedidos = new System.Windows.Forms.DataGridView();
+            this.Column18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button16 = new System.Windows.Forms.Button();
             this.tabpane.SuspendLayout();
             this.tab1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -108,6 +117,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridTipoPresentacion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProductosExistentes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridPedidosCliente)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridClientesPedidos)).BeginInit();
             this.SuspendLayout();
             // 
             // tabpane
@@ -116,6 +128,7 @@
             this.tabpane.Controls.Add(this.tabPage2);
             this.tabpane.Controls.Add(this.tabPage3);
             this.tabpane.Controls.Add(this.tabPage1);
+            this.tabpane.Controls.Add(this.tabPage4);
             this.tabpane.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabpane.Location = new System.Drawing.Point(0, 0);
             this.tabpane.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -813,6 +826,98 @@
             this.label4.TabIndex = 1;
             this.label4.Text = "Productos existentes";
             // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.button16);
+            this.tabPage4.Controls.Add(this.dataGridPedidosCliente);
+            this.tabPage4.Controls.Add(this.label14);
+            this.tabPage4.Controls.Add(this.dataGridClientesPedidos);
+            this.tabPage4.Location = new System.Drawing.Point(4, 29);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(1040, 649);
+            this.tabPage4.TabIndex = 4;
+            this.tabPage4.Text = "Pedidos";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // dataGridPedidosCliente
+            // 
+            this.dataGridPedidosCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridPedidosCliente.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column20,
+            this.Column21});
+            this.dataGridPedidosCliente.Location = new System.Drawing.Point(553, 67);
+            this.dataGridPedidosCliente.Name = "dataGridPedidosCliente";
+            this.dataGridPedidosCliente.RowHeadersWidth = 51;
+            this.dataGridPedidosCliente.RowTemplate.Height = 29;
+            this.dataGridPedidosCliente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridPedidosCliente.Size = new System.Drawing.Size(326, 188);
+            this.dataGridPedidosCliente.TabIndex = 2;
+            // 
+            // Column20
+            // 
+            this.Column20.HeaderText = "id";
+            this.Column20.MinimumWidth = 6;
+            this.Column20.Name = "Column20";
+            this.Column20.ReadOnly = true;
+            this.Column20.Width = 125;
+            // 
+            // Column21
+            // 
+            this.Column21.HeaderText = "estado";
+            this.Column21.MinimumWidth = 6;
+            this.Column21.Name = "Column21";
+            this.Column21.ReadOnly = true;
+            this.Column21.Width = 125;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(129, 27);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(130, 20);
+            this.label14.TabIndex = 1;
+            this.label14.Text = "Clientes existentes";
+            // 
+            // dataGridClientesPedidos
+            // 
+            this.dataGridClientesPedidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridClientesPedidos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column18,
+            this.Column19});
+            this.dataGridClientesPedidos.Location = new System.Drawing.Point(24, 67);
+            this.dataGridClientesPedidos.Name = "dataGridClientesPedidos";
+            this.dataGridClientesPedidos.RowHeadersWidth = 51;
+            this.dataGridClientesPedidos.RowTemplate.Height = 29;
+            this.dataGridClientesPedidos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridClientesPedidos.Size = new System.Drawing.Size(346, 159);
+            this.dataGridClientesPedidos.TabIndex = 0;
+            this.dataGridClientesPedidos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridClientesPedidos_CellDoubleClick);
+            // 
+            // Column18
+            // 
+            this.Column18.HeaderText = "Cedula";
+            this.Column18.MinimumWidth = 6;
+            this.Column18.Name = "Column18";
+            this.Column18.ReadOnly = true;
+            this.Column18.Width = 125;
+            // 
+            // Column19
+            // 
+            this.Column19.HeaderText = "Nombre";
+            this.Column19.MinimumWidth = 6;
+            this.Column19.Name = "Column19";
+            this.Column19.ReadOnly = true;
+            this.Column19.Width = 125;
+            // 
+            // button16
+            // 
+            this.button16.Location = new System.Drawing.Point(434, 337);
+            this.button16.Name = "button16";
+            this.button16.Size = new System.Drawing.Size(94, 29);
+            this.button16.TabIndex = 3;
+            this.button16.Text = "Editar";
+            this.button16.UseVisualStyleBackColor = true;
+            // 
             // gestion_admin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -839,6 +944,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridTipoPresentacion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProductosExistentes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridPedidosCliente)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridClientesPedidos)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -914,5 +1023,14 @@
         private DataGridView dataGridView4;
         private DataGridViewTextBoxColumn Column16;
         private DataGridViewTextBoxColumn Column17;
+        private TabPage tabPage4;
+        private Label label14;
+        private DataGridView dataGridClientesPedidos;
+        private DataGridViewTextBoxColumn Column18;
+        private DataGridViewTextBoxColumn Column19;
+        private DataGridView dataGridPedidosCliente;
+        private DataGridViewTextBoxColumn Column20;
+        private DataGridViewTextBoxColumn Column21;
+        private Button button16;
     }
 }

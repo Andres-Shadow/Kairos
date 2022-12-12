@@ -1,6 +1,8 @@
 ﻿using crudbasesdedatos.dao;
 using crudbasesdedatos.logica;
 using crudbasesdedatos.servicios;
+using kairos.dao;
+using kairos.logica;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +17,7 @@ namespace crudbasesdedatos.servicioImpl
         private ProductoDao productoRepo = new ProductoDao();
         private PresentacionDao presentacionRepo = new PresentacionDao();
         private TipoPresentacionDao tipoPresentacionRepo = new TipoPresentacionDao();
+        private PedidoDao pedidoRepo = new PedidoDao();
 
         public bool actualizarCliente(string cedulaViejo, Cliente nuevo)
         {
@@ -208,6 +211,16 @@ namespace crudbasesdedatos.servicioImpl
             }
 
             return encontrado;
+        }
+
+        public List<Pedido> obtenerPedidosSegunCliente(Cliente cliente)
+        {
+            List<Pedido> lista = pedidoRepo.obtenerPedidosSegunCliente(cliente);
+            if (lista == null)
+            {
+                throw new Exception("No se ha encontrado ese cliente en los pedidos");
+            }
+            return lista;
         }
 
         public Presentacion obtenerPresentacionPorId(int id)
