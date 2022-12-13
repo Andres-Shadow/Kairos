@@ -40,8 +40,8 @@ namespace crudbasesdedatos
             listarPresentaciones();
 
 
-            //LLENADO TABLA TIPO PRESENTACION CRUD
-            //listarTipoPresentacionesCrud();
+            //LLENADO TABLA PEDIDOS FACTURA
+            listarPedidosFactura();
 
 
             string[] estados = {"CREADO", "ACTUALIZADO", "TRAMITADO"};
@@ -611,12 +611,72 @@ namespace crudbasesdedatos
 
             List <Pedido> lista = adminServicio.obtenerPedidosSegunCliente(seleccionado);
 
-            for(int i = 0; i<lista.Count; i++)
+
+
+            dataGridProductosCarrito.Rows.Clear();
+            dataGridPedidosCliente.Rows.Clear();
+            for (int i = 0; i<lista.Count; i++)
             {
                 Pedido aux = lista[i];
                 dataGridPedidosCliente.Rows.Add();
                 dataGridPedidosCliente.Rows[i].Cells[0].Value = aux.id;
                 dataGridPedidosCliente.Rows[i].Cells[1].Value = aux.estado;
+            }
+
+            
+        }
+
+        private void dataGridPedidosCliente_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int id = Convert.ToInt32(this.dataGridPedidosCliente.SelectedRows[0].Cells[0].Value);
+            Pedido pedidoSeleccionado = adminServicio.obtenerPedidoPorId(id);
+            Carrito carro = adminServicio.obtenerCarritoSegunPedido(pedidoSeleccionado);
+            carro.canastas = adminServicio.obtenerCanastaSegunCarrito(carro);
+
+            dataGridProductosCarrito.Rows.Clear();
+            for(int i = 0; i<carro.canastas.Count; i++) 
+            { 
+                Canasta aux = carro.canastas[i];
+                dataGridProductosCarrito.Rows.Add();
+                //id nombre cantidad
+                dataGridProductosCarrito.Rows[i].Cells[0].Value = aux.presentacion.id;
+                dataGridProductosCarrito.Rows[i].Cells[1].Value = aux.presentacion.producto.nombre;
+                dataGridProductosCarrito.Rows[i].Cells[2].Value = aux.presentacion.tipo_producto.tipo;
+                dataGridProductosCarrito.Rows[i].Cells[3].Value = aux.cantidad;
+
+            }
+        }
+
+        private void listarPedidosFactura()
+        {
+            List<Pedido> lista = adminServicio.listarPedidos();
+            dataGridPedidosFacturacion.Rows.Clear();
+            for(int i = 0; i<lista.Count;i++)
+            {
+                Pedido aux = lista[i];
+                dataGridPedidosFacturacion.Rows.Add();
+                dataGridPedidosFacturacion.Rows[i].Cells[0].Value = aux.id;
+                dataGridPedidosFacturacion.Rows[i].Cells[1].Value = aux.cliente.nombre;
+                dataGridPedidosFacturacion.Rows[i].Cells[2].Value = aux.estado;
+                
+            }
+        }
+
+        private void dataGridPedidosFacturacion_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int id = Convert.ToInt32(this.dataGridPedidosFacturacion.SelectedRows[0].Cells[0].Value);
+            Pedido seleccionado = adminServicio.obtenerPedidoPorId(id);
+            Carrito carroPedido = adminServicio.obtenerCarritoSegunPedido(seleccionado);
+            carroPedido.canastas = adminServicio.obtenerCanastaSegunCarrito(carroPedido);
+            carritoPedidoFacturacion.Rows.Clear();
+            for(int i = 0; i<carroPedido.canastas.Count; i++)
+            {
+                Canasta aux = carroPedido.canastas[i];
+                carritoPedidoFacturacion.Rows.Add();
+                carritoPedidoFacturacion.Rows[i].Cells[0].Value = aux.presentacion.id;
+                carritoPedidoFacturacion.Rows[i].Cells[1].Value = aux.presentacion.producto.nombre;
+                carritoPedidoFacturacion.Rows[i].Cells[2].Value = aux.presentacion.tipo_producto.tipo;
+                carritoPedidoFacturacion.Rows[i].Cells[3].Value = aux.cantidad;
             }
         }
     }

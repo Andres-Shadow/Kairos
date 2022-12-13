@@ -18,6 +18,7 @@ namespace crudbasesdedatos.servicioImpl
         private PresentacionDao presentacionRepo = new PresentacionDao();
         private TipoPresentacionDao tipoPresentacionRepo = new TipoPresentacionDao();
         private PedidoDao pedidoRepo = new PedidoDao();
+        private CarritoDao carritRepo = new CarritoDao();
 
         public bool actualizarCliente(string cedulaViejo, Cliente nuevo)
         {
@@ -184,6 +185,12 @@ namespace crudbasesdedatos.servicioImpl
             return listaClientes;
         }
 
+        public List<Pedido> listarPedidos()
+        {
+            List<Pedido> lista = pedidoRepo.listarPedidos();
+            return lista;
+        }
+
         public List<Presentacion> listarPresentaciones()
         {
             List<Presentacion> listaPresentaciones = presentacionRepo.listarPresentaciones();
@@ -202,6 +209,22 @@ namespace crudbasesdedatos.servicioImpl
             return listaTipoPresentaciones;
         }
 
+        public List<Canasta> obtenerCanastaSegunCarrito(Carrito carrito)
+        {
+            List<Canasta> listaCanasta = carritRepo.obtenerCanastaDePedido(carrito);
+            return listaCanasta;
+        }
+
+        public Carrito obtenerCarritoSegunPedido(Pedido pedido)
+        {
+            Carrito encontrado = carritRepo.obtenerCarritoSegunPedido(pedido);
+            if(encontrado == null)
+            {
+                throw new Exception("No se ha podido encontrar el carrito");
+            }
+            return encontrado;
+        }
+
         public Cliente obtenerClientePorCedula(string cedula)
         {
             Cliente encontrado = clienteRepo.obtenerClientePorId(cedula);
@@ -210,6 +233,16 @@ namespace crudbasesdedatos.servicioImpl
                 throw new Exception("Cliente no encontrado");
             }
 
+            return encontrado;
+        }
+
+        public Pedido obtenerPedidoPorId(int idPedido)
+        {
+            Pedido encontrado = pedidoRepo.obtenerPedidoSegunId(idPedido);
+            if(encontrado == null)
+            {
+                throw new Exception("No se ha podido encontrar el pedido");
+            }
             return encontrado;
         }
 

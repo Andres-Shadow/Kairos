@@ -48,6 +48,13 @@ namespace crudbasesdedatos.servicios
 
         //PEDIDOS
         public List<Pedido> obtenerPedidosSegunCliente(Cliente cliente);
+        public Pedido obtenerPedidoPorId(int idPedido);
+        public List<Pedido> listarPedidos();
+
+
+        //CARRITO
+        public Carrito obtenerCarritoSegunPedido(Pedido pedido);
+        public List<Canasta> obtenerCanastaSegunCarrito(Carrito carrito);
 
     }
 }

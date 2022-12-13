@@ -98,6 +98,14 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.label16 = new System.Windows.Forms.Label();
+            this.dataGridProductosCarrito = new System.Windows.Forms.DataGridView();
+            this.Column22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column31 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label15 = new System.Windows.Forms.Label();
+            this.button16 = new System.Windows.Forms.Button();
             this.dataGridPedidosCliente = new System.Windows.Forms.DataGridView();
             this.Column20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -105,7 +113,19 @@
             this.dataGridClientesPedidos = new System.Windows.Forms.DataGridView();
             this.Column18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button16 = new System.Windows.Forms.Button();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.carritoPedidoFacturacion = new System.Windows.Forms.DataGridView();
+            this.Column27 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column28 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column32 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column29 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label18 = new System.Windows.Forms.Label();
+            this.button17 = new System.Windows.Forms.Button();
+            this.dataGridPedidosFacturacion = new System.Windows.Forms.DataGridView();
+            this.Column25 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column30 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column26 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label17 = new System.Windows.Forms.Label();
             this.tabpane.SuspendLayout();
             this.tab1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -118,8 +138,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProductosExistentes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridProductosCarrito)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridPedidosCliente)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridClientesPedidos)).BeginInit();
+            this.tabPage5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.carritoPedidoFacturacion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridPedidosFacturacion)).BeginInit();
             this.SuspendLayout();
             // 
             // tabpane
@@ -129,6 +153,7 @@
             this.tabpane.Controls.Add(this.tabPage3);
             this.tabpane.Controls.Add(this.tabPage1);
             this.tabpane.Controls.Add(this.tabPage4);
+            this.tabpane.Controls.Add(this.tabPage5);
             this.tabpane.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabpane.Location = new System.Drawing.Point(0, 0);
             this.tabpane.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -828,6 +853,9 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.label16);
+            this.tabPage4.Controls.Add(this.dataGridProductosCarrito);
+            this.tabPage4.Controls.Add(this.label15);
             this.tabPage4.Controls.Add(this.button16);
             this.tabPage4.Controls.Add(this.dataGridPedidosCliente);
             this.tabPage4.Controls.Add(this.label14);
@@ -839,19 +867,95 @@
             this.tabPage4.Text = "Pedidos";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(641, 164);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(142, 20);
+            this.label16.TabIndex = 6;
+            this.label16.Text = "Productos en carrito";
+            // 
+            // dataGridProductosCarrito
+            // 
+            this.dataGridProductosCarrito.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridProductosCarrito.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column22,
+            this.Column23,
+            this.Column31,
+            this.Column24});
+            this.dataGridProductosCarrito.Location = new System.Drawing.Point(412, 207);
+            this.dataGridProductosCarrito.Name = "dataGridProductosCarrito";
+            this.dataGridProductosCarrito.RowHeadersWidth = 51;
+            this.dataGridProductosCarrito.RowTemplate.Height = 29;
+            this.dataGridProductosCarrito.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridProductosCarrito.Size = new System.Drawing.Size(561, 203);
+            this.dataGridProductosCarrito.TabIndex = 5;
+            // 
+            // Column22
+            // 
+            this.Column22.HeaderText = "Id";
+            this.Column22.MinimumWidth = 6;
+            this.Column22.Name = "Column22";
+            this.Column22.ReadOnly = true;
+            this.Column22.Width = 125;
+            // 
+            // Column23
+            // 
+            this.Column23.HeaderText = "Nombre";
+            this.Column23.MinimumWidth = 6;
+            this.Column23.Name = "Column23";
+            this.Column23.ReadOnly = true;
+            this.Column23.Width = 125;
+            // 
+            // Column31
+            // 
+            this.Column31.HeaderText = "Paquete";
+            this.Column31.MinimumWidth = 6;
+            this.Column31.Name = "Column31";
+            this.Column31.ReadOnly = true;
+            this.Column31.Width = 125;
+            // 
+            // Column24
+            // 
+            this.Column24.HeaderText = "Cantidad";
+            this.Column24.MinimumWidth = 6;
+            this.Column24.Name = "Column24";
+            this.Column24.ReadOnly = true;
+            this.Column24.Width = 125;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(129, 299);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(134, 20);
+            this.label15.TabIndex = 4;
+            this.label15.Text = "Pedidos del cliente";
+            // 
+            // button16
+            // 
+            this.button16.Location = new System.Drawing.Point(914, 141);
+            this.button16.Name = "button16";
+            this.button16.Size = new System.Drawing.Size(94, 29);
+            this.button16.TabIndex = 3;
+            this.button16.Text = "Editar";
+            this.button16.UseVisualStyleBackColor = true;
+            // 
             // dataGridPedidosCliente
             // 
             this.dataGridPedidosCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridPedidosCliente.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column20,
             this.Column21});
-            this.dataGridPedidosCliente.Location = new System.Drawing.Point(553, 67);
+            this.dataGridPedidosCliente.Location = new System.Drawing.Point(24, 350);
             this.dataGridPedidosCliente.Name = "dataGridPedidosCliente";
             this.dataGridPedidosCliente.RowHeadersWidth = 51;
             this.dataGridPedidosCliente.RowTemplate.Height = 29;
             this.dataGridPedidosCliente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridPedidosCliente.Size = new System.Drawing.Size(326, 188);
+            this.dataGridPedidosCliente.Size = new System.Drawing.Size(346, 198);
             this.dataGridPedidosCliente.TabIndex = 2;
+            this.dataGridPedidosCliente.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridPedidosCliente_CellDoubleClick);
             // 
             // Column20
             // 
@@ -889,7 +993,7 @@
             this.dataGridClientesPedidos.RowHeadersWidth = 51;
             this.dataGridClientesPedidos.RowTemplate.Height = 29;
             this.dataGridClientesPedidos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridClientesPedidos.Size = new System.Drawing.Size(346, 159);
+            this.dataGridClientesPedidos.Size = new System.Drawing.Size(346, 188);
             this.dataGridClientesPedidos.TabIndex = 0;
             this.dataGridClientesPedidos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridClientesPedidos_CellDoubleClick);
             // 
@@ -909,14 +1013,134 @@
             this.Column19.ReadOnly = true;
             this.Column19.Width = 125;
             // 
-            // button16
+            // tabPage5
             // 
-            this.button16.Location = new System.Drawing.Point(434, 337);
-            this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(94, 29);
-            this.button16.TabIndex = 3;
-            this.button16.Text = "Editar";
-            this.button16.UseVisualStyleBackColor = true;
+            this.tabPage5.Controls.Add(this.carritoPedidoFacturacion);
+            this.tabPage5.Controls.Add(this.label18);
+            this.tabPage5.Controls.Add(this.button17);
+            this.tabPage5.Controls.Add(this.dataGridPedidosFacturacion);
+            this.tabPage5.Controls.Add(this.label17);
+            this.tabPage5.Location = new System.Drawing.Point(4, 29);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Size = new System.Drawing.Size(1040, 649);
+            this.tabPage5.TabIndex = 5;
+            this.tabPage5.Text = "Facturacion";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // carritoPedidoFacturacion
+            // 
+            this.carritoPedidoFacturacion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.carritoPedidoFacturacion.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column27,
+            this.Column28,
+            this.Column32,
+            this.Column29});
+            this.carritoPedidoFacturacion.Location = new System.Drawing.Point(28, 362);
+            this.carritoPedidoFacturacion.Name = "carritoPedidoFacturacion";
+            this.carritoPedidoFacturacion.RowHeadersWidth = 51;
+            this.carritoPedidoFacturacion.RowTemplate.Height = 29;
+            this.carritoPedidoFacturacion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.carritoPedidoFacturacion.Size = new System.Drawing.Size(567, 191);
+            this.carritoPedidoFacturacion.TabIndex = 4;
+            // 
+            // Column27
+            // 
+            this.Column27.HeaderText = "Id";
+            this.Column27.MinimumWidth = 6;
+            this.Column27.Name = "Column27";
+            this.Column27.ReadOnly = true;
+            this.Column27.Width = 125;
+            // 
+            // Column28
+            // 
+            this.Column28.HeaderText = "Nombre";
+            this.Column28.MinimumWidth = 6;
+            this.Column28.Name = "Column28";
+            this.Column28.ReadOnly = true;
+            this.Column28.Width = 125;
+            // 
+            // Column32
+            // 
+            this.Column32.HeaderText = "Tipo Paquete";
+            this.Column32.MinimumWidth = 6;
+            this.Column32.Name = "Column32";
+            this.Column32.ReadOnly = true;
+            this.Column32.Width = 125;
+            // 
+            // Column29
+            // 
+            this.Column29.HeaderText = "Cantidad";
+            this.Column29.MinimumWidth = 6;
+            this.Column29.Name = "Column29";
+            this.Column29.ReadOnly = true;
+            this.Column29.Width = 125;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(220, 308);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(54, 20);
+            this.label18.TabIndex = 3;
+            this.label18.Text = "Carrito";
+            // 
+            // button17
+            // 
+            this.button17.Location = new System.Drawing.Point(692, 270);
+            this.button17.Name = "button17";
+            this.button17.Size = new System.Drawing.Size(94, 29);
+            this.button17.TabIndex = 2;
+            this.button17.Text = "Facturar";
+            this.button17.UseVisualStyleBackColor = true;
+            // 
+            // dataGridPedidosFacturacion
+            // 
+            this.dataGridPedidosFacturacion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridPedidosFacturacion.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column25,
+            this.Column30,
+            this.Column26});
+            this.dataGridPedidosFacturacion.Location = new System.Drawing.Point(28, 112);
+            this.dataGridPedidosFacturacion.Name = "dataGridPedidosFacturacion";
+            this.dataGridPedidosFacturacion.RowHeadersWidth = 51;
+            this.dataGridPedidosFacturacion.RowTemplate.Height = 29;
+            this.dataGridPedidosFacturacion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridPedidosFacturacion.Size = new System.Drawing.Size(567, 146);
+            this.dataGridPedidosFacturacion.TabIndex = 1;
+            this.dataGridPedidosFacturacion.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridPedidosFacturacion_CellContentDoubleClick);
+            // 
+            // Column25
+            // 
+            this.Column25.HeaderText = "Id";
+            this.Column25.MinimumWidth = 6;
+            this.Column25.Name = "Column25";
+            this.Column25.ReadOnly = true;
+            this.Column25.Width = 125;
+            // 
+            // Column30
+            // 
+            this.Column30.HeaderText = "Nombre cliente";
+            this.Column30.MinimumWidth = 6;
+            this.Column30.Name = "Column30";
+            this.Column30.ReadOnly = true;
+            this.Column30.Width = 200;
+            // 
+            // Column26
+            // 
+            this.Column26.HeaderText = "Estado";
+            this.Column26.MinimumWidth = 6;
+            this.Column26.Name = "Column26";
+            this.Column26.ReadOnly = true;
+            this.Column26.Width = 125;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(217, 77);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(61, 20);
+            this.label17.TabIndex = 0;
+            this.label17.Text = "Pedidos";
             // 
             // gestion_admin
             // 
@@ -946,8 +1170,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridProductosCarrito)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridPedidosCliente)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridClientesPedidos)).EndInit();
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.carritoPedidoFacturacion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridPedidosFacturacion)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1032,5 +1261,25 @@
         private DataGridViewTextBoxColumn Column20;
         private DataGridViewTextBoxColumn Column21;
         private Button button16;
+        private Label label15;
+        private Label label16;
+        private DataGridView dataGridProductosCarrito;
+        private TabPage tabPage5;
+        private Button button17;
+        private DataGridView dataGridPedidosFacturacion;
+        private Label label17;
+        private Label label18;
+        private DataGridView carritoPedidoFacturacion;
+        private DataGridViewTextBoxColumn Column25;
+        private DataGridViewTextBoxColumn Column30;
+        private DataGridViewTextBoxColumn Column26;
+        private DataGridViewTextBoxColumn Column22;
+        private DataGridViewTextBoxColumn Column23;
+        private DataGridViewTextBoxColumn Column31;
+        private DataGridViewTextBoxColumn Column24;
+        private DataGridViewTextBoxColumn Column27;
+        private DataGridViewTextBoxColumn Column28;
+        private DataGridViewTextBoxColumn Column32;
+        private DataGridViewTextBoxColumn Column29;
     }
 }
