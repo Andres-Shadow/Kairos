@@ -72,5 +72,7 @@ namespace crudbasesdedatos.servicios
         public bool actualizarEmpleado(Empleado empleado);
         public List<Empleado> listarEmpleado();
 
+        public int contarEmpleados();
+
     }
 }

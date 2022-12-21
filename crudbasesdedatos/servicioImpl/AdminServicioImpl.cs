@@ -41,7 +41,7 @@ namespace crudbasesdedatos.servicioImpl
         public bool actualizarEmpleado(Empleado empleado)
         {
             bool result = empleadoRepo.actualizarEmpleado(empleado);
-            if (result)
+            if (!result)
             {
                 throw new Exception("No se ha podido actualizar el empleado");
             }
@@ -137,6 +137,12 @@ namespace crudbasesdedatos.servicioImpl
                 throw new Exception("No se ha podido agregar el tipo de presentacion");
             }
             return result;
+        }
+
+        public int contarEmpleados()
+        {
+            int cantidad = empleadoRepo.contarCantidadEmpleados();
+            return cantidad;
         }
 
         public int contarFacturas()

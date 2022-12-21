@@ -63,7 +63,7 @@ namespace kairos.dao
 
         public Empleado obtenerEmpleadoPorCedula(string cedula)
         {
-            string consulta = "select * from empleado where cedula = " + cedula;
+            string consulta = "select * from empleado where cedula = \'" + cedula + "\'";
             MySqlCommand cmd = new MySqlCommand(consulta);
             cmd.Connection = conectar();
             MySqlDataReader reader;
@@ -176,6 +176,30 @@ namespace kairos.dao
                 MessageBox.Show(ex.Message);
             }
             return lista;
+        }
+
+        public int contarCantidadEmpleados()
+        {
+            string consulta = "select count(id) from empleado";
+            MySqlCommand cmd = new MySqlCommand(consulta);
+            cmd.Connection = conectar();
+            MySqlDataReader reader;
+            int total = 0;
+            try
+            {
+                reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while(reader.Read())
+                    {
+                        total = reader.GetInt32(0);
+                    }
+                }
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return total;
         }
     }
 }

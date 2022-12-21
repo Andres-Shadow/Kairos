@@ -47,7 +47,8 @@ namespace crudbasesdedatos
             //LLENADO TABLA PEDIDOS FACTURA
             listarPedidosFactura();
 
-
+            //LLENADO TABLA EMPLEADOS
+            listarEmpleados();
 
 
             string[] estados = {"CREADO", "ACTUALIZADO", "TRAMITADO"};
@@ -710,6 +711,100 @@ namespace crudbasesdedatos
             this.Hide();
             DetallePedido d = new DetallePedido(cedula, empleado.cedula);
             d.Show();
+        }
+
+        //AGREGAR EMPLEADO
+        private void button19_Click(object sender, EventArgs e)
+        {
+            string nombre = txtNombreEmpleado.Text;
+            string cedula = txtCedulaEmpleado.Text;
+            string password = txtContraEmpleado.Text;
+            string tipo = comboTIpoEmpleado.Text;
+            int id = adminServicio.contarEmpleados() + 1;
+            Empleado aux = new Empleado(nombre, cedula, id, password, tipo);
+            bool result = adminServicio.agregarEmpleado(aux);
+            if (result)
+            {
+                listarEmpleados();
+            }
+        }
+
+        //LISTAR EMPLEADOS EXISTENTES
+
+        private void listarEmpleados()
+        {
+            List<Empleado> lista = adminServicio.listarEmpleado();
+            dataGridEmpleados.Rows.Clear();
+            Empleado aux = null;
+            for(int i = 0; i<lista.Count; i++) 
+            {
+                aux = lista[i];
+                dataGridEmpleados.Rows.Add();
+                dataGridEmpleados.Rows[i].Cells[0].Value = aux.id;
+                dataGridEmpleados.Rows[i].Cells[1].Value = aux.nombre;
+                dataGridEmpleados.Rows[i].Cells[2].Value = aux.cedula;
+                dataGridEmpleados.Rows[i].Cells[3].Value = aux.password;
+                dataGridEmpleados.Rows[i].Cells[4].Value = aux.tipo;
+            }
+        }
+
+        //ELIMINAR EMPLEADOS
+        private void button20_Click(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt32(dataGridEmpleados.SelectedRows[0].Cells[0].Value);
+            bool result = adminServicio.eliminarEmpleado(id);
+            if(result)
+            {
+                listarEmpleados();
+            }
+        }
+        //MOSTRAR EMPLEADO SELECCIONADO
+        private void dataGridEmpleados_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+            string cedula = Convert.ToString(dataGridEmpleados.SelectedRows[0].Cells[2].Value);
+            Empleado aux = adminServicio.obterEmpleadoPorCedula(cedula);
+            if(aux != null)
+            {
+                txtNombreEmpleado.Text = aux.nombre;
+                txtCedulaEmpleado.Text = aux.cedula;
+                txtContraEmpleado.Text = aux.password;
+                comboTIpoEmpleado.SelectedItem = aux.tipo;
+            }
+        }
+
+
+        //ACTUALIZAR EMPLEADO
+        private void button21_Click(object sender, EventArgs e)
+        {
+            string cedula = Convert.ToString(dataGridEmpleados.SelectedRows[0].Cells[2].Value);
+            Empleado aux = adminServicio.obterEmpleadoPorCedula(cedula);
+            if(aux != null)
+            {
+                string nombre, cedula2, password, tipo;
+                nombre = txtNombreEmpleado.Text;
+                cedula2 = txtCedulaEmpleado.Text;
+                password = txtContraEmpleado.Text;
+                tipo = comboTIpoEmpleado.Text;
+                aux.nombre = nombre;
+                aux.cedula = cedula2;
+                aux.tipo = tipo;
+                aux.password = password;
+
+                bool result = adminServicio.actualizarEmpleado(aux);
+                if(result)
+                {
+                    listarEmpleados();
+
+                }
+            }
+        }
+
+        private void limpiarEmpleados()
+        {
+            txtNombreEmpleado.Text = "";
+            txtCedulaEmpleado.Text = "";
+            txtContraEmpleado.Text = "";
         }
     }
 

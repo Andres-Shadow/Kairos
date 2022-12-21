@@ -98,6 +98,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.button18 = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
             this.dataGridProductosCarrito = new System.Windows.Forms.DataGridView();
             this.Column22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -126,8 +127,24 @@
             this.Column30 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column26 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label17 = new System.Windows.Forms.Label();
-            this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.button18 = new System.Windows.Forms.Button();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.comboTIpoEmpleado = new System.Windows.Forms.ComboBox();
+            this.dataGridEmpleados = new System.Windows.Forms.DataGridView();
+            this.Column33 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column34 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column35 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column36 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column37 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtContraEmpleado = new System.Windows.Forms.TextBox();
+            this.txtCedulaEmpleado = new System.Windows.Forms.TextBox();
+            this.txtNombreEmpleado = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.button21 = new System.Windows.Forms.Button();
+            this.button20 = new System.Windows.Forms.Button();
+            this.button19 = new System.Windows.Forms.Button();
             this.tabpane.SuspendLayout();
             this.tab1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -146,6 +163,8 @@
             this.tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.carritoPedidoFacturacion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridPedidosFacturacion)).BeginInit();
+            this.tabPage7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridEmpleados)).BeginInit();
             this.SuspendLayout();
             // 
             // tabpane
@@ -156,7 +175,7 @@
             this.tabpane.Controls.Add(this.tabPage1);
             this.tabpane.Controls.Add(this.tabPage4);
             this.tabpane.Controls.Add(this.tabPage5);
-            this.tabpane.Controls.Add(this.tabPage6);
+            this.tabpane.Controls.Add(this.tabPage7);
             this.tabpane.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabpane.Location = new System.Drawing.Point(0, 0);
             this.tabpane.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -871,6 +890,16 @@
             this.tabPage4.Text = "Pedidos";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // button18
+            // 
+            this.button18.Location = new System.Drawing.Point(429, 113);
+            this.button18.Name = "button18";
+            this.button18.Size = new System.Drawing.Size(94, 29);
+            this.button18.TabIndex = 7;
+            this.button18.Text = "Agregar";
+            this.button18.UseVisualStyleBackColor = true;
+            this.button18.Click += new System.EventHandler(this.button18_Click);
+            // 
             // label16
             // 
             this.label16.AutoSize = true;
@@ -1147,24 +1176,182 @@
             this.label17.TabIndex = 0;
             this.label17.Text = "Pedidos";
             // 
-            // tabPage6
+            // tabPage7
             // 
-            this.tabPage6.Location = new System.Drawing.Point(4, 29);
-            this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(1040, 649);
-            this.tabPage6.TabIndex = 6;
-            this.tabPage6.Text = "Entregas";
-            this.tabPage6.UseVisualStyleBackColor = true;
+            this.tabPage7.Controls.Add(this.comboTIpoEmpleado);
+            this.tabPage7.Controls.Add(this.dataGridEmpleados);
+            this.tabPage7.Controls.Add(this.txtContraEmpleado);
+            this.tabPage7.Controls.Add(this.txtCedulaEmpleado);
+            this.tabPage7.Controls.Add(this.txtNombreEmpleado);
+            this.tabPage7.Controls.Add(this.label22);
+            this.tabPage7.Controls.Add(this.label21);
+            this.tabPage7.Controls.Add(this.label20);
+            this.tabPage7.Controls.Add(this.label19);
+            this.tabPage7.Controls.Add(this.button21);
+            this.tabPage7.Controls.Add(this.button20);
+            this.tabPage7.Controls.Add(this.button19);
+            this.tabPage7.Location = new System.Drawing.Point(4, 29);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Size = new System.Drawing.Size(1040, 649);
+            this.tabPage7.TabIndex = 7;
+            this.tabPage7.Text = "Empleados";
+            this.tabPage7.UseVisualStyleBackColor = true;
             // 
-            // button18
+            // comboTIpoEmpleado
             // 
-            this.button18.Location = new System.Drawing.Point(429, 113);
-            this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(94, 29);
-            this.button18.TabIndex = 7;
-            this.button18.Text = "Agregar";
-            this.button18.UseVisualStyleBackColor = true;
-            this.button18.Click += new System.EventHandler(this.button18_Click);
+            this.comboTIpoEmpleado.FormattingEnabled = true;
+            this.comboTIpoEmpleado.Items.AddRange(new object[] {
+            "admin",
+            "nomal"});
+            this.comboTIpoEmpleado.Location = new System.Drawing.Point(280, 218);
+            this.comboTIpoEmpleado.Name = "comboTIpoEmpleado";
+            this.comboTIpoEmpleado.Size = new System.Drawing.Size(151, 28);
+            this.comboTIpoEmpleado.TabIndex = 12;
+            // 
+            // dataGridEmpleados
+            // 
+            this.dataGridEmpleados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridEmpleados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column33,
+            this.Column34,
+            this.Column35,
+            this.Column36,
+            this.Column37});
+            this.dataGridEmpleados.Location = new System.Drawing.Point(107, 318);
+            this.dataGridEmpleados.Name = "dataGridEmpleados";
+            this.dataGridEmpleados.RowHeadersWidth = 51;
+            this.dataGridEmpleados.RowTemplate.Height = 29;
+            this.dataGridEmpleados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridEmpleados.Size = new System.Drawing.Size(736, 188);
+            this.dataGridEmpleados.TabIndex = 11;
+            this.dataGridEmpleados.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridEmpleados_CellContentDoubleClick);
+            // 
+            // Column33
+            // 
+            this.Column33.HeaderText = "Id";
+            this.Column33.MinimumWidth = 6;
+            this.Column33.Name = "Column33";
+            this.Column33.ReadOnly = true;
+            this.Column33.Width = 125;
+            // 
+            // Column34
+            // 
+            this.Column34.HeaderText = "Nombre";
+            this.Column34.MinimumWidth = 6;
+            this.Column34.Name = "Column34";
+            this.Column34.ReadOnly = true;
+            this.Column34.Width = 125;
+            // 
+            // Column35
+            // 
+            this.Column35.HeaderText = "Cedula";
+            this.Column35.MinimumWidth = 6;
+            this.Column35.Name = "Column35";
+            this.Column35.ReadOnly = true;
+            this.Column35.Width = 125;
+            // 
+            // Column36
+            // 
+            this.Column36.HeaderText = "Contraseña";
+            this.Column36.MinimumWidth = 6;
+            this.Column36.Name = "Column36";
+            this.Column36.ReadOnly = true;
+            this.Column36.Width = 125;
+            // 
+            // Column37
+            // 
+            this.Column37.HeaderText = "Tipo";
+            this.Column37.MinimumWidth = 6;
+            this.Column37.Name = "Column37";
+            this.Column37.ReadOnly = true;
+            this.Column37.Width = 125;
+            // 
+            // txtContraEmpleado
+            // 
+            this.txtContraEmpleado.Location = new System.Drawing.Point(280, 163);
+            this.txtContraEmpleado.Name = "txtContraEmpleado";
+            this.txtContraEmpleado.Size = new System.Drawing.Size(151, 27);
+            this.txtContraEmpleado.TabIndex = 9;
+            // 
+            // txtCedulaEmpleado
+            // 
+            this.txtCedulaEmpleado.Location = new System.Drawing.Point(280, 96);
+            this.txtCedulaEmpleado.Name = "txtCedulaEmpleado";
+            this.txtCedulaEmpleado.Size = new System.Drawing.Size(151, 27);
+            this.txtCedulaEmpleado.TabIndex = 8;
+            // 
+            // txtNombreEmpleado
+            // 
+            this.txtNombreEmpleado.Location = new System.Drawing.Point(280, 50);
+            this.txtNombreEmpleado.Name = "txtNombreEmpleado";
+            this.txtNombreEmpleado.Size = new System.Drawing.Size(151, 27);
+            this.txtNombreEmpleado.TabIndex = 7;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(113, 218);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(39, 20);
+            this.label22.TabIndex = 6;
+            this.label22.Text = "Tipo";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(113, 166);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(83, 20);
+            this.label21.TabIndex = 5;
+            this.label21.Text = "Contraseña";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(113, 113);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(55, 20);
+            this.label20.TabIndex = 4;
+            this.label20.Text = "Cedula";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(113, 57);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(64, 20);
+            this.label19.TabIndex = 3;
+            this.label19.Text = "Nombre";
+            // 
+            // button21
+            // 
+            this.button21.Location = new System.Drawing.Point(749, 209);
+            this.button21.Name = "button21";
+            this.button21.Size = new System.Drawing.Size(94, 29);
+            this.button21.TabIndex = 2;
+            this.button21.Text = "Actualizar";
+            this.button21.UseVisualStyleBackColor = true;
+            this.button21.Click += new System.EventHandler(this.button21_Click);
+            // 
+            // button20
+            // 
+            this.button20.Location = new System.Drawing.Point(749, 139);
+            this.button20.Name = "button20";
+            this.button20.Size = new System.Drawing.Size(94, 29);
+            this.button20.TabIndex = 1;
+            this.button20.Text = "Eliminar";
+            this.button20.UseVisualStyleBackColor = true;
+            this.button20.Click += new System.EventHandler(this.button20_Click);
+            // 
+            // button19
+            // 
+            this.button19.Location = new System.Drawing.Point(749, 73);
+            this.button19.Name = "button19";
+            this.button19.Size = new System.Drawing.Size(94, 29);
+            this.button19.TabIndex = 0;
+            this.button19.Text = "Agregar";
+            this.button19.UseVisualStyleBackColor = true;
+            this.button19.Click += new System.EventHandler(this.button19_Click);
             // 
             // gestion_admin
             // 
@@ -1201,6 +1388,9 @@
             this.tabPage5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.carritoPedidoFacturacion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridPedidosFacturacion)).EndInit();
+            this.tabPage7.ResumeLayout(false);
+            this.tabPage7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridEmpleados)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1305,7 +1495,24 @@
         private DataGridViewTextBoxColumn Column28;
         private DataGridViewTextBoxColumn Column32;
         private DataGridViewTextBoxColumn Column29;
-        private TabPage tabPage6;
         private Button button18;
+        private TabPage tabPage7;
+        private Label label22;
+        private Label label21;
+        private Label label20;
+        private Label label19;
+        private Button button21;
+        private Button button20;
+        private Button button19;
+        private TextBox txtContraEmpleado;
+        private TextBox txtCedulaEmpleado;
+        private TextBox txtNombreEmpleado;
+        private DataGridView dataGridEmpleados;
+        private DataGridViewTextBoxColumn Column33;
+        private DataGridViewTextBoxColumn Column34;
+        private DataGridViewTextBoxColumn Column35;
+        private DataGridViewTextBoxColumn Column36;
+        private DataGridViewTextBoxColumn Column37;
+        private ComboBox comboTIpoEmpleado;
     }
 }
