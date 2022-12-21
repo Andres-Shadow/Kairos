@@ -105,7 +105,7 @@ namespace kairos.dao
             MySqlDataReader reader;
             Pedido pedido = null;
             try
-            {
+            {   
                 reader = cmd.ExecuteReader();
                 if (reader.HasRows)
                 {
@@ -127,6 +127,116 @@ namespace kairos.dao
 
             return pedido;
         }
+
+        public bool actualizarEstadoPedidoAFacturado(int idPedido) 
+        {
+
+            string consulta = "update pedido set estado = \'facturado\' where id = " + idPedido;
+            MySqlCommand cmd = new MySqlCommand(consulta);
+            cmd.Connection = conectar();
+            MySqlDataReader reader;
+            try
+            {
+                reader = cmd.ExecuteReader();
+
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return true;
+        }
+
+        public bool tramitarPedido( string cedulaCliente, int idEmpleado, float valor)
+        {
+            int id = contarPedidos()+1;
+            string consulta = "insert into pedido values ("+id + ", \'creado\' , \'" + cedulaCliente + "\', " + idEmpleado + ", " + valor + ")";
+            MySqlCommand cmd = new MySqlCommand(consulta);
+            cmd.Connection= conectar();
+            MySqlDataReader reader;
+            try
+            {
+                reader = cmd.ExecuteReader();
+
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return true;
+        }
+
+        public int contarPedidos()
+        {
+            string consula = "select count(id) from pedido";
+            MySqlCommand cmd = new MySqlCommand(consula);
+            cmd.Connection = conectar();
+            MySqlDataReader reader;
+            int total = 0;
+            try
+            {
+                reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while(reader.Read())
+                    {
+                        total = reader.GetInt32(0);
+                    }
+                }
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return total;
+        }
+
+
+        public bool actualizarEstadoPedidoACreado(int idPedido)
+        {
+
+            string consulta = "update pedido set estado = \'creado\' where id = " + idPedido;
+            MySqlCommand cmd = new MySqlCommand(consulta);
+            cmd.Connection = conectar();
+            MySqlDataReader reader;
+            try
+            {
+                reader = cmd.ExecuteReader();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return true;
+        }
+
+        public float calcularValorCarrito(Pedido pedido)
+        {
+            string consulta = "select sum(cp.cantidad*pre.precio) from pedido p join carrito c on c.id_pedido = p.id join carrito_presentacion cp on cp.id_carrito = c.id join presentacion pre on pre.id = cp.id_presentacion where p.id = "+pedido.id;
+            MySqlCommand cmd = new MySqlCommand(consulta);
+            cmd.Connection = conectar();
+            MySqlDataReader reader;
+            float total = 0;
+            try
+            {
+                reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        total = reader.GetInt32(0);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return total;
+        }
+
+
+
 
 
     }

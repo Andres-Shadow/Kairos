@@ -32,7 +32,8 @@ namespace crudbasesdedatos.dao
         public bool loginAdmin(string usuario, string password)
         {
             cx.Open();
-            string consulta = "select * from administrador where usuario=\'"+usuario+ "\'and password=\'"+password+"\'";
+            //string consulta = "select * from administrador where usuario=\'"+usuario+ "\'and password=\'"+password+"\'";
+            string consulta = "select * from empleado where cedula = \'"+usuario+"\' and password = \'"+password+"\' and tipo = \'admin\'";
             MySqlCommand cmd = new MySqlCommand(consulta, cx);
             MySqlDataReader reader;
 

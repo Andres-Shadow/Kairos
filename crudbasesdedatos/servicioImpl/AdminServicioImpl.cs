@@ -6,6 +6,7 @@ using kairos.logica;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,6 +20,8 @@ namespace crudbasesdedatos.servicioImpl
         private TipoPresentacionDao tipoPresentacionRepo = new TipoPresentacionDao();
         private PedidoDao pedidoRepo = new PedidoDao();
         private CarritoDao carritRepo = new CarritoDao();
+        private FacturaDao facturaRepo = new FacturaDao();
+        private EmpleadoDao empleadoRepo = new EmpleadoDao();
 
         public bool actualizarCliente(string cedulaViejo, Cliente nuevo)
         {
@@ -32,6 +35,16 @@ namespace crudbasesdedatos.servicioImpl
                 throw new Exception("No se ha podido actualizar el cliente");
             }
             
+            return result;
+        }
+
+        public bool actualizarEmpleado(Empleado empleado)
+        {
+            bool result = empleadoRepo.actualizarEmpleado(empleado);
+            if (result)
+            {
+                throw new Exception("No se ha podido actualizar el empleado");
+            }
             return result;
         }
 
@@ -80,6 +93,16 @@ namespace crudbasesdedatos.servicioImpl
             return result;
         }
 
+        public bool agregarEmpleado(Empleado empleado)
+        {
+            bool result = empleadoRepo.agregarEmpleado(empleado);
+            if (!result)
+            {
+                throw new Exception("No se ha podido agregar el empleado");
+            }
+            return result;
+        }
+
         public bool agregarPresentacion(Presentacion presentacion)
         {
             bool result = presentacionRepo.agregarPresentacion(presentacion);
@@ -116,6 +139,12 @@ namespace crudbasesdedatos.servicioImpl
             return result;
         }
 
+        public int contarFacturas()
+        {
+            int cantidad = facturaRepo.contarFacturas();
+            return cantidad;
+        }
+
         public int contarPresentaciones()
         {
             int total = 0;
@@ -145,6 +174,16 @@ namespace crudbasesdedatos.servicioImpl
                 throw new Exception("No se ha podido eliminar el cliente");
             }
 
+            return result;
+        }
+
+        public bool eliminarEmpleado(int id)
+        {
+            bool result = empleadoRepo.eliminarEmpleado(id);
+            if(!result)
+            {
+                throw new Exception("No se ha podido eliminar el empleado");
+            }
             return result;
         }
 
@@ -179,10 +218,76 @@ namespace crudbasesdedatos.servicioImpl
             return result;
         }
 
+        public bool facturar(Pedido pedido)
+        {
+            Canasta cAux = null;
+            int idPresentacion;
+            int catidadActual;
+            int cantidadResultado;
+            bool continuar = true;
+            bool finalizado = true;
+
+            string date = DateTime.UtcNow.ToString("dd-MM-yyyy");
+            string[] partes = date.Split("-");
+            int dia = Int32.Parse(partes[0]) + 1;
+            int mes = Int32.Parse(partes[1]);
+            int anio = Int32.Parse(partes[2]);
+
+
+            string fecha = anio + "/" + mes + "/" + dia;
+            int idFactura = contarFacturas() + 1;
+
+            Factura f = new Factura(idFactura, pedido, fecha);
+
+            if (pedido.estado.Equals("creado"))
+            {
+                try
+                {
+                    bool primerPaso = facturaRepo.agregarFactura(f);
+                    if (primerPaso)
+                    {
+                        Carrito aux = carritRepo.obtenerCarritoSegunPedido(f.pedido.id);
+                        if (aux != null)
+                        {
+                            MessageBox.Show("se ha encontrado el carrito pa");
+                            aux.canastas = obtenerCanastaSegunCarrito(aux);
+                            for (int i = 0; i < aux.canastas.Count && continuar == true; i++)
+                            {
+                                cAux = aux.canastas[i];
+                                idPresentacion = cAux.presentacion.id;
+                                catidadActual = cAux.presentacion.existencias;
+                                cantidadResultado = catidadActual - cAux.cantidad;
+                                continuar = presentacionRepo.reducirExistencias(idPresentacion, cantidadResultado);
+                            }
+                        }
+                        finalizado = pedidoRepo.actualizarEstadoPedidoAFacturado(aux.pedido.id);
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Este pedido ya ha sido facturado");
+            }
+
+
+            return finalizado == true;
+        }
+
         public List<Cliente> listarClientes()
         {
             List<Cliente> listaClientes = clienteRepo.obtenerClientes();
             return listaClientes;
+        }
+
+        public List<Empleado> listarEmpleado()
+        {
+            List<Empleado> listaEmpleado = empleadoRepo.listarEmpleado();
+            return listaEmpleado;
         }
 
         public List<Pedido> listarPedidos()
@@ -233,6 +338,16 @@ namespace crudbasesdedatos.servicioImpl
                 throw new Exception("Cliente no encontrado");
             }
 
+            return encontrado;
+        }
+
+        public Factura obtenerFacturaPorIdPedido(int id)
+        {
+            Factura encontrado = facturaRepo.obtenerFacturaPorIdPedido(id);
+            if(encontrado == null)
+            {
+                throw new Exception("No se ha podido encontrar la factura");
+            }
             return encontrado;
         }
 
@@ -287,6 +402,86 @@ namespace crudbasesdedatos.servicioImpl
                 throw new Exception("Tipo presentacion no encontrado");
             }
             return encontrado;
+        }
+
+        public float obtenervalorCarritoSegunCarrito(Pedido pedido)
+        {
+            float valor = pedidoRepo.calcularValorCarrito(pedido);
+            return valor;
+        }
+
+        public Empleado obterEmpleadoPorCedula(string cedula)
+        {
+            Empleado encontrado = empleadoRepo.obtenerEmpleadoPorCedula(cedula);
+            if(encontrado == null)
+            {
+                throw new Exception("No se ha encontrado el empleado");
+            }
+            return encontrado;
+        }
+
+        public bool reincorporar(Factura factura)
+        {
+            Canasta cAux = null;
+            int idPresentacion;
+            int catidadActual;
+            int cantidadResultado;
+            bool continuar = true;
+            bool finalizado = true;
+            if (factura.pedido.estado.Equals("facturado"))
+            {
+                try
+                {
+                    bool primerPaso = facturaRepo.eliminarFactura(factura);
+                    if (primerPaso)
+                    {
+                        Carrito aux = carritRepo.obtenerCarritoSegunPedido(factura.pedido.id);
+                        if (aux != null)
+                        {
+                            aux.canastas = obtenerCanastaSegunCarrito(aux);
+                            for (int i = 0; i < aux.canastas.Count && continuar == true; i++)
+                            {
+                                cAux = aux.canastas[i];
+                                idPresentacion = cAux.presentacion.id;
+                                catidadActual = cAux.presentacion.existencias;
+                                cantidadResultado = catidadActual + cAux.cantidad;
+                                continuar = presentacionRepo.reducirExistencias(idPresentacion, cantidadResultado);
+                            }
+                        }
+                        //finalizado = pedidoRepo.actualizarEstadoPedidoACreado(aux.pedido.id);
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                }
+            }
+
+
+            return finalizado == true;
+        }
+
+        public bool tramitarPedido(List<Presentacion> lista, string cedulaCliente, int idEmpleado, float valor)
+        {
+            bool pedidoCreado = pedidoRepo.tramitarPedido(cedulaCliente, idEmpleado, valor);
+            int idPedido = pedidoRepo.contarPedidos();
+            MessageBox.Show(""+idPedido);
+            Pedido creado = obtenerPedidoPorId(idPedido);
+            Carrito aux = new Carrito(creado, idPedido);
+            bool carritoCreado = carritRepo.agregarCarrito(aux);
+
+            if(pedidoCreado == true &&  carritoCreado==true)
+            {
+                bool terminar = carritRepo.agregarProductosCarrito(aux, lista);
+                if (terminar)
+                {
+                    MessageBox.Show("que viva el vicio");
+                }
+            }
+            
+
+            return true;
         }
     }
 }

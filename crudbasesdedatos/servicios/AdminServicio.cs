@@ -51,10 +51,26 @@ namespace crudbasesdedatos.servicios
         public Pedido obtenerPedidoPorId(int idPedido);
         public List<Pedido> listarPedidos();
 
+        public bool tramitarPedido(List<Presentacion> lista, string cedulaCliente, int idEmpleado, float valor);
 
         //CARRITO
         public Carrito obtenerCarritoSegunPedido(Pedido pedido);
         public List<Canasta> obtenerCanastaSegunCarrito(Carrito carrito);
+        public float obtenervalorCarritoSegunCarrito(Pedido pedido);
+
+        //FACTURA
+        public bool facturar(Pedido pedido);
+        public Factura obtenerFacturaPorIdPedido(int id);
+        public int contarFacturas();
+        public bool reincorporar(Factura factura);
+
+
+        //EMPLEADO
+        public Empleado obterEmpleadoPorCedula(string cedula);
+        public bool agregarEmpleado(Empleado empleado);
+        public bool eliminarEmpleado(int id);
+        public bool actualizarEmpleado(Empleado empleado);
+        public List<Empleado> listarEmpleado();
 
     }
 }

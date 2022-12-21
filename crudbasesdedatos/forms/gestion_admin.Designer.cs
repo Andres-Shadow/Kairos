@@ -126,6 +126,8 @@
             this.Column30 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column26 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label17 = new System.Windows.Forms.Label();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.button18 = new System.Windows.Forms.Button();
             this.tabpane.SuspendLayout();
             this.tab1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -154,6 +156,7 @@
             this.tabpane.Controls.Add(this.tabPage1);
             this.tabpane.Controls.Add(this.tabPage4);
             this.tabpane.Controls.Add(this.tabPage5);
+            this.tabpane.Controls.Add(this.tabPage6);
             this.tabpane.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabpane.Location = new System.Drawing.Point(0, 0);
             this.tabpane.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -853,6 +856,7 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.button18);
             this.tabPage4.Controls.Add(this.label16);
             this.tabPage4.Controls.Add(this.dataGridProductosCarrito);
             this.tabPage4.Controls.Add(this.label15);
@@ -1086,12 +1090,13 @@
             // 
             // button17
             // 
-            this.button17.Location = new System.Drawing.Point(692, 270);
+            this.button17.Location = new System.Drawing.Point(694, 245);
             this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(94, 29);
+            this.button17.Size = new System.Drawing.Size(114, 29);
             this.button17.TabIndex = 2;
             this.button17.Text = "Facturar";
             this.button17.UseVisualStyleBackColor = true;
+            this.button17.Click += new System.EventHandler(this.button17_Click);
             // 
             // dataGridPedidosFacturacion
             // 
@@ -1141,6 +1146,25 @@
             this.label17.Size = new System.Drawing.Size(61, 20);
             this.label17.TabIndex = 0;
             this.label17.Text = "Pedidos";
+            // 
+            // tabPage6
+            // 
+            this.tabPage6.Location = new System.Drawing.Point(4, 29);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Size = new System.Drawing.Size(1040, 649);
+            this.tabPage6.TabIndex = 6;
+            this.tabPage6.Text = "Entregas";
+            this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // button18
+            // 
+            this.button18.Location = new System.Drawing.Point(429, 113);
+            this.button18.Name = "button18";
+            this.button18.Size = new System.Drawing.Size(94, 29);
+            this.button18.TabIndex = 7;
+            this.button18.Text = "Agregar";
+            this.button18.UseVisualStyleBackColor = true;
+            this.button18.Click += new System.EventHandler(this.button18_Click);
             // 
             // gestion_admin
             // 
@@ -1281,5 +1305,7 @@
         private DataGridViewTextBoxColumn Column28;
         private DataGridViewTextBoxColumn Column32;
         private DataGridViewTextBoxColumn Column29;
+        private TabPage tabPage6;
+        private Button button18;
     }
 }

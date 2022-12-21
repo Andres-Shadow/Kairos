@@ -18,7 +18,12 @@ namespace kairos.logica
             get; set;
         }
 
-        public string correo
+        public string password
+        {
+            get; set;
+        }
+
+        public string tipo
         {
             get; set;
         }
@@ -28,11 +33,12 @@ namespace kairos.logica
             get; set;
         }
 
-        public Empleado(string nombre, string cedula, string correo, int id)
+        public Empleado(string nombre, string cedula, int id, string password, string tipo)
         {
             this.nombre = nombre;
             this.cedula = cedula;
-            this.correo = correo;
+            this.password = password;
+            this.tipo = tipo;
             this.id = id;
         }   
     }

@@ -187,5 +187,23 @@ namespace crudbasesdedatos.dao
             return true;
         }
 
+        public bool reducirExistencias(int id, int existencias)
+        {
+            string consulta = "update presentacion set existencias=" + existencias + " where id=" + id;
+            MessageBox.Show(consulta);
+            MySqlCommand cmd = new MySqlCommand(consulta);
+            cmd.Connection = conectar();
+            cmd.CommandTimeout = 1000;
+            MySqlDataReader reader;
+            try
+            {
+                reader = cmd.ExecuteReader();
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return true;
+        }
+
     }
 }

@@ -44,7 +44,7 @@ namespace kairos.dao
                 MessageBox.Show(ex.Message);
             }
 
-            return false;
+            return true;
         }
 
         public Carrito obtenerCarritoPorId(int id)
@@ -133,6 +133,85 @@ namespace kairos.dao
             return found;   
         }
 
+        public float calcularValorCarrito(Carrito carrito)
+        {
+            string consulta = "select sum(p.precio*c.cantidad) from carrito_presentacion c join presentacion p on c.id_presentacion = p.id where c.id_carrito =" + carrito.id;
+            MySqlCommand cmd = new MySqlCommand(consulta);
+            cmd.Connection = conectar();
+            MySqlDataReader reader;
+            float total = 0;
+            try
+            {
+                reader = cmd.ExecuteReader();
+                if(reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        total = reader.GetInt32(0);
+                    }
+                }
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return total;
+        }
+
+        public Carrito obtenerCarritoSegunPedido(int idPedido)
+        {
+            Carrito aux = null;
+            Pedido pedido = null;
+            int id = 0;
+            string consulta = "select * from carrito where id_pedido=" + idPedido;
+            MySqlCommand cmd = new MySqlCommand(consulta);
+            cmd.Connection = conectar();
+            cmd.CommandTimeout = 1000;
+            MySqlDataReader reader;
+            
+            try
+            {
+                reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        id = reader.GetInt32(0);
+                        pedido = pedidoRepo.obtenerPedidoSegunId(reader.GetInt32(1));
+                        aux = new Carrito(pedido, id);
+                    }
+                }
+            }catch(Exception ex )
+            {
+                MessageBox.Show(ex.Message);
+            }
+            //aux.canastas = obtenerCanastaDePedido(aux);
+            return aux;
+        }
+
+        public bool agregarProductosCarrito(Carrito carrito, List<Presentacion> presentaciones)
+        {
+            Presentacion aux = null;
+            string consulta = "";
+            MySqlCommand cmd = new MySqlCommand();
+            MySqlDataReader reader = null;
+            cmd.Connection = conectar();
+            for(int i = 0; i < presentaciones.Count; i++)
+            {
+                aux = presentaciones[i];
+                consulta = "insert into carrito_presentacion values ("+aux.existencias + "," + carrito.id + "," + aux.id + ")";
+                cmd.CommandText = consulta;
+                try
+                {
+                    reader = cmd.ExecuteReader();
+                    reader.Close();
+                }catch(Exception ex )
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+
+            return true;
+        }
 
 
 

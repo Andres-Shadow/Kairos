@@ -32,7 +32,7 @@ namespace crudbasesdedatos.forms
 
             if (result)
             {
-                gestion_admin gestion= new gestion_admin();
+                gestion_admin gestion= new gestion_admin(usuario);
                 gestion.Show();
                 this.Hide();
             }

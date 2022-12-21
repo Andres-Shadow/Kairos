@@ -2,6 +2,7 @@ using crudbasesdedatos.dao;
 using crudbasesdedatos.forms;
 using crudbasesdedatos.logica;
 using crudbasesdedatos.servicioImpl;
+using kairos.forms;
 using kairos.logica;
 using MySql.Data.MySqlClient;
 using MySqlX.XDevAPI;
@@ -15,9 +16,12 @@ namespace crudbasesdedatos
     {
 
         private AdminServicioImpl adminServicio = new AdminServicioImpl();
-        public gestion_admin()
+        private Empleado empleado = null;
+        public gestion_admin(string cedulaEmpleado)
         {
+            
             InitializeComponent();
+            empleado = adminServicio.obterEmpleadoPorCedula(cedulaEmpleado);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -42,6 +46,8 @@ namespace crudbasesdedatos
 
             //LLENADO TABLA PEDIDOS FACTURA
             listarPedidosFactura();
+
+
 
 
             string[] estados = {"CREADO", "ACTUALIZADO", "TRAMITADO"};
@@ -678,6 +684,32 @@ namespace crudbasesdedatos
                 carritoPedidoFacturacion.Rows[i].Cells[2].Value = aux.presentacion.tipo_producto.tipo;
                 carritoPedidoFacturacion.Rows[i].Cells[3].Value = aux.cantidad;
             }
+        }
+
+        private void button17_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                int id = Convert.ToInt32(this.dataGridPedidosFacturacion.SelectedRows[0].Cells[0].Value);
+                Pedido seleccionado = adminServicio.obtenerPedidoPorId(id);
+                adminServicio.facturar(seleccionado);
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            listarPresentaciones();
+            listarPedidosFactura();
+        }
+
+        //AGREGAR PEDIDO
+        private void button18_Click(object sender, EventArgs e)
+        {
+            string cedula = (string)this.dataGridClientesPedidos.SelectedRows[0].Cells[0].Value;
+            this.Hide();
+            DetallePedido d = new DetallePedido(cedula, empleado.cedula);
+            d.Show();
         }
     }
 
