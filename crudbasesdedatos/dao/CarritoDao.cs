@@ -184,7 +184,7 @@ namespace kairos.dao
             {
                 MessageBox.Show(ex.Message);
             }
-            //aux.canastas = obtenerCanastaDePedido(aux);
+            
             return aux;
         }
 

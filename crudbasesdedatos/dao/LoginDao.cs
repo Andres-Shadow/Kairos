@@ -56,6 +56,33 @@ namespace crudbasesdedatos.dao
             return false;
         }
 
+        public bool loginEmpleado(string usuario, string password)
+        {
+            cx.Open();
+            //string consulta = "select * from administrador where usuario=\'"+usuario+ "\'and password=\'"+password+"\'";
+            string consulta = "select * from empleado where cedula = \'" + usuario + "\' and password = \'" + password + "\'";
+            MySqlCommand cmd = new MySqlCommand(consulta, cx);
+            MySqlDataReader reader;
+
+            try
+            {
+                reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    return true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            cx.Close();
+            return false;
+        }
+
        
     }
 }

@@ -709,7 +709,7 @@ namespace crudbasesdedatos
         {
             string cedula = (string)this.dataGridClientesPedidos.SelectedRows[0].Cells[0].Value;
             this.Hide();
-            DetallePedido d = new DetallePedido(cedula, empleado.cedula);
+            DetallePedido d = new DetallePedido(cedula, empleado.cedula,1);
             d.Show();
         }
 

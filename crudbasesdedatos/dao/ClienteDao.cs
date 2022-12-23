@@ -149,7 +149,7 @@ namespace crudbasesdedatos.dao
         public bool actualizarCliente(string cedula, Cliente actualizar)
         {
             string consulta = "update cliente set nombre= \'"+actualizar.nombre+"\', telefono= \'"+actualizar.telefono+"\', direccion = \'"+actualizar.direccion+"\', nit=\'"+actualizar.nit+"\' where cedula =\'"+cedula+"\'";
-            MessageBox.Show(consulta);
+            
             MySqlCommand cmd = new MySqlCommand(consulta);
             cmd.Connection = conectar();
             MySqlDataReader reader;

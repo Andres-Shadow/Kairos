@@ -232,6 +232,7 @@ namespace crudbasesdedatos.servicioImpl
             int cantidadResultado;
             bool continuar = true;
             bool finalizado = true;
+            bool fallo = false;
 
             string date = DateTime.UtcNow.ToString("dd-MM-yyyy");
             string[] partes = date.Split("-");
@@ -245,6 +246,8 @@ namespace crudbasesdedatos.servicioImpl
 
             Factura f = new Factura(idFactura, pedido, fecha);
 
+            int[,] matriz = null;
+
             if (pedido.estado.Equals("creado"))
             {
                 try
@@ -255,18 +258,48 @@ namespace crudbasesdedatos.servicioImpl
                         Carrito aux = carritRepo.obtenerCarritoSegunPedido(f.pedido.id);
                         if (aux != null)
                         {
-                            MessageBox.Show("se ha encontrado el carrito pa");
+                            
                             aux.canastas = obtenerCanastaSegunCarrito(aux);
+                            int n = aux.canastas.Count;
+                            matriz = new int[n,2];
                             for (int i = 0; i < aux.canastas.Count && continuar == true; i++)
                             {
                                 cAux = aux.canastas[i];
                                 idPresentacion = cAux.presentacion.id;
                                 catidadActual = cAux.presentacion.existencias;
-                                cantidadResultado = catidadActual - cAux.cantidad;
-                                continuar = presentacionRepo.reducirExistencias(idPresentacion, cantidadResultado);
+                                if (cAux.cantidad > catidadActual)
+                                {
+                                    fallo = true;
+                                    continuar = false;
+                                    break;
+                                }
+                                else
+                                {
+                                    cantidadResultado = catidadActual - cAux.cantidad;
+                                    matriz[i,0] = idPresentacion;
+                                    matriz[i,1] = cantidadResultado;
+                                }
+                                
+                            }
+                            int idp = 0, cres = 0;
+                            if(fallo == false)
+                            {
+                                for(int i = 0; i<aux.canastas.Count; i++)
+                                {
+                                    idp = matriz[i, 0];
+                                    cres = matriz[i, 1];
+                                    presentacionRepo.reducirExistencias(idp, cres);
+                                    
+                                }
+                                finalizado = pedidoRepo.actualizarEstadoPedidoAFacturado(aux.pedido.id);
+                            }
+                            else
+                            {
+                                facturaRepo.eliminarFactura(f);
+
                             }
                         }
-                        finalizado = pedidoRepo.actualizarEstadoPedidoAFacturado(aux.pedido.id);
+                        
                     }
 
                 }
@@ -454,7 +487,7 @@ namespace crudbasesdedatos.servicioImpl
                                 continuar = presentacionRepo.reducirExistencias(idPresentacion, cantidadResultado);
                             }
                         }
-                        //finalizado = pedidoRepo.actualizarEstadoPedidoACreado(aux.pedido.id);
+                        
                     }
 
                 }
@@ -472,7 +505,7 @@ namespace crudbasesdedatos.servicioImpl
         {
             bool pedidoCreado = pedidoRepo.tramitarPedido(cedulaCliente, idEmpleado, valor);
             int idPedido = pedidoRepo.contarPedidos();
-            MessageBox.Show(""+idPedido);
+            
             Pedido creado = obtenerPedidoPorId(idPedido);
             Carrito aux = new Carrito(creado, idPedido);
             bool carritoCreado = carritRepo.agregarCarrito(aux);
@@ -482,7 +515,7 @@ namespace crudbasesdedatos.servicioImpl
                 bool terminar = carritRepo.agregarProductosCarrito(aux, lista);
                 if (terminar)
                 {
-                    MessageBox.Show("que viva el vicio");
+                    MessageBox.Show("Pedido creado correctamente");
                 }
             }
             

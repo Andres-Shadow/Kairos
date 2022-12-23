@@ -100,7 +100,7 @@ namespace kairos.dao
         public Factura obtenerFacturaPorIdPedido(int id)
         {
             string consulta = "select * from factura where id_pedido=" + id;
-            MessageBox.Show(consulta);
+            
             MySqlCommand cmd = new MySqlCommand(consulta);
             cmd.Connection = conectar();
             MySqlDataReader reader;

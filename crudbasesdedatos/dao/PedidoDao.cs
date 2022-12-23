@@ -52,7 +52,8 @@ namespace kairos.dao
                         string estado = reader.GetString(1);
                         cAux =  clienteRepo.obtenerClientePorId(reader.GetString(2));
                         eAux = empleadoRepo.obtenerEmpleadoPorId(reader.GetInt32(3));
-                        pAux = new Pedido(id, estado, cAux, eAux);
+                        float valor = reader.GetFloat(4);
+                        pAux = new Pedido(id, estado, cAux, eAux, valor);
                         lista.Add(pAux);
                     }
                 }
@@ -86,7 +87,8 @@ namespace kairos.dao
                         string estado = reader.GetString(1);
                         cliente = clienteRepo.obtenerClientePorId(reader.GetString(2));
                         eaux = empleadoRepo.obtenerEmpleadoPorId(reader.GetInt32(3));
-                        pedido = new Pedido(id, estado, cliente, eaux);
+                        float valor = reader.GetFloat(4);   
+                        pedido = new Pedido(id, estado, cliente, eaux, valor);
                         lista.Add(pedido);
                     }
                 }
@@ -115,8 +117,8 @@ namespace kairos.dao
                         string estado = reader.GetString(1);
                         Cliente aux = clienteRepo.obtenerClientePorId(reader.GetString(2));
                         Empleado empleado = empleadoRepo.obtenerEmpleadoPorId(reader.GetInt32(3));
-
-                        pedido = new Pedido(idd, estado, aux, empleado);
+                        float valor = reader.GetFloat(4);
+                        pedido = new Pedido(idd, estado, aux, empleado, valor);
                     }
                 }
             }

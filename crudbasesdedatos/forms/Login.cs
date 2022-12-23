@@ -1,4 +1,6 @@
 ﻿using crudbasesdedatos.dao;
+using kairos.forms;
+using kairos.logica;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -35,6 +37,16 @@ namespace crudbasesdedatos.forms
                 gestion_admin gestion= new gestion_admin(usuario);
                 gestion.Show();
                 this.Hide();
+            }
+            else
+            {
+                bool result2 = login.loginEmpleado(usuario, passwd);
+                if (result2)
+                {
+                    EmpleadoView empleado = new EmpleadoView(usuario);
+                    empleado.Show();
+                    this.Hide();
+                }
             }
         }
 

@@ -18,6 +18,7 @@ namespace kairos.forms
     {
         private Cliente cliente;
         private Empleado empleado;
+        private int llamado = 0;
         private AdminServicioImpl adminServicio = new AdminServicioImpl();
         private List<Presentacion> presentacions;
 
@@ -25,13 +26,14 @@ namespace kairos.forms
         private List<Presentacion> carrito = new List<Presentacion>();
         
         private Presentacion seleccionado = null;   
-        public DetallePedido(string cedula, string cedulaEmpleado)
+        public DetallePedido(string cedula, string cedulaEmpleado, int llamado)
         {
             InitializeComponent();
             cliente = adminServicio.obtenerClientePorCedula(cedula);
             empleado = adminServicio.obterEmpleadoPorCedula(cedulaEmpleado);
             label3.Text = "Cliente : " + cliente.nombre;
             presentacions = adminServicio.listarPresentaciones();
+            this.llamado = llamado;
             setearListaCarrito();
         }
 
@@ -151,9 +153,18 @@ namespace kairos.forms
 
         private void volverAGestion()
         {
-            gestion_admin gestion = new gestion_admin(this.empleado.cedula);
-            gestion.Show();
-            this.Hide();
+            if(llamado == 1)
+            {
+                gestion_admin gestion = new gestion_admin(this.empleado.cedula);
+                gestion.Show();
+                this.Hide();
+            }
+            else if(llamado == 2)
+            {
+                EmpleadoView empleado = new EmpleadoView(this.empleado.cedula);
+                empleado.Show();
+                this.Hide();
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)

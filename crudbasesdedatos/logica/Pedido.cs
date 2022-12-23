@@ -29,12 +29,18 @@ namespace kairos.logica
             get; set;
         }
 
-        public Pedido(int id, string estado, Cliente cliente, Empleado empleado)
+        public float valor
+        {
+            get; set;
+        }
+
+        public Pedido(int id, string estado, Cliente cliente, Empleado empleado, float valor)
         {
             this.id = id;
             this.estado = estado;
             this.cliente = cliente;
             this.empleado = empleado;
+            this.valor = valor; 
         }
     }
 }
